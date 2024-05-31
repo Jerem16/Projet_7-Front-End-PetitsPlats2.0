@@ -1,0 +1,17 @@
+{
+    "name": "projet_7-front-end-petitsplats2.0",
+    "version": "1.0.0",
+    "description": "Développez un algorithme de recherche en JavaScript",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "sass": "sass --watch ./assets/style/scss/main.scss:./assets/style/css/style.css --style expanded --no-source-map",
+        "copy": "sass --watch ./assets/style/scss/main.scss:./assets/style/css/style_prefixed.css --style expanded --no-source-map",
+        "prefix": "postcss ./assets/style/css/style_prefixed.css  --use=autoprefixer --replace ./assets/css/style_prefixed.css"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "bootstrap": "^5.3.3"
+    }
+}

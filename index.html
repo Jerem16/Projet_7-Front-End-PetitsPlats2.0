@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr-FR">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="author" content="Jérémy Lemaignent" />
+        <meta
+            name="description"
+            content="Site de recettes de cuisine,  une vaste collection de recettes savoureuses et faciles à suivre, élaborées par des chefs expérimentés et passionnés ."
+        />
+        <title>Les Petits Plats</title>
+        <link rel="icon" type="image/png" href="./assets/img/favicon.svg" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Anton&display=swap"
+        />
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Manrope&display=swap"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css"
+        />
+        <link rel="stylesheet" href="./assets/style/css/style.css" />
+        <script type="module" src="./assets/scripts/index.js"></script>
+    </head>
+
+    <body class="bg-secondary">
+        <header
+            class="header text-primary px-2 px-md-5 px-sm-5 text-center position-relative align-content-center"
+        >
+            <div class="overlay"></div>
+            <img
+                class="position-absolute top-0 start-0 logo m-4 m-md-5"
+                src="./assets/img/Logo.svg"
+                alt="Logo du site : les petits plats"
+            />
+            <h1
+                class="col-10 offset-1 col-md-6 offset-md-3 position-relative fs-1 fw-bold text-uppercase my-5 px-3"
+            >
+                Cherchez parmi plus de 1500 recettes du quotidien, simples et
+                délicieuses
+            </h1>
+            <form
+                id="mSearchForm"
+                class="col-11 offset-0 col-md-8 offset-md-2 d-flex bg-white p-2 position-relative"
+            >
+                <input
+                    id="mSearchInput"
+                    class="form-control form-control-lg me-2"
+                    type="search"
+                    aria-label="Rechercher une recette, un ingrédient, ..."
+                    placeholder="Rechercher une recette, un ingrédient, ..."
+                />
+                <img
+                    id="reset_main-search"
+                    class="close position-absolute"
+                    src="./assets/img/icons/close.svg"
+                    alt="Reset search"
+                />
+                <button
+                    class="btn btn-dark position-absolute end-0 mx-2"
+                    type="submit"
+                    title="search"
+                >
+                    <i class="bi bi-search"></i>
+                </button>
+            </form>
+        </header>
+
+        <main class="container-fluid px-5 px-sm-0 px-lg-5">
+            <nav
+                id="filter-research"
+                class="filter-research d-flex flex-wrap flex-md-nowrap px-5 px-sm-3 gap-sm-0 gap-md-3 col-12"
+            >
+            </nav>
+            <section
+                id="recipes_cards"
+                class="row  px-sm-3 gap-sm-0 gap-md-3 d-flex col-12 flex-wrap"
+            ></section>
+        </main>
+
+        <template></template>
+    </body>
+</html>

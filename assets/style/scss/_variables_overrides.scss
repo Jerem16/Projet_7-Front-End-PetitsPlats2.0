@@ -1,0 +1,63 @@
+$deepBlack: #1b1b1b !default;
+$yellow: #ffd15b !default;
+$grey: #7a7a7a;
+$lightGrey: #ededed;
+$white: #fff;
+$black: #000;
+$primary-font: Anton, sans-serif;
+$secondary-font: Manrope, sans-serif;
+$filerShadow: drop-shadow(1px 2px 1px rgba(27, 27, 27, 0.15));
+
+$primary: $yellow;
+$secondary: $lightGrey;
+// $success:       $green !default;
+// $info:          $cyan !default;
+// $warning:       $yellow !default;
+// $danger:        $red !default;
+// $light:         $white;
+$dark: $deepBlack;
+
+@mixin center-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+@mixin drop-shadow {
+    filter: drop-shadow(1px 2px 1px rgba(27, 27, 27, 0.75));
+}
+@mixin absolute-full {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+@mixin text-style(
+    $font-family,
+    $font-size,
+    $font-weight,
+    $line-height,
+    $color
+) {
+    font-family: $font-family;
+    font-size: $font-size;
+    font-weight: $font-weight;
+    line-height: $line-height;
+    color: $color;
+}
+
+@mixin placeholder {
+    @content;
+    &::placeholder {
+        @content;
+    }
+}
+@mixin hide-scrollbar {
+    overflow-y: scroll;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+    &::-webkit-scrollbar {
+        display: none; /* Safari and Chrome */
+    }
+}
