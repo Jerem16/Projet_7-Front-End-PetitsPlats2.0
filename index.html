@@ -57,7 +57,7 @@
                     placeholder="Rechercher une recette, un ingrédient, ..."
                 />
                 <img
-                    id="reset_main-search"
+                    id="reset_filter-research"
                     class="close position-absolute"
                     src="./assets/img/icons/close.svg"
                     alt="Reset search"
@@ -76,14 +76,51 @@
             <nav
                 id="filter-research"
                 class="filter-research d-flex flex-wrap flex-md-nowrap px-5 px-sm-3 gap-sm-0 gap-md-3 col-12"
-            >
-            </nav>
+            ></nav>
             <section
                 id="recipes_cards"
-                class="row  px-sm-3 gap-sm-0 gap-md-3 d-flex col-12 flex-wrap"
+                class="row px-sm-3 gap-sm-0 gap-md-3 d-flex col-12 flex-wrap"
             ></section>
         </main>
 
-        <template></template>
+        <template id="advanced-search">
+            <div
+                class="filter-container col-12 col-sm-3 col-md-3 col-lg-2 mb-3"
+            >
+             
+                <button
+                    class="custom-select btn"
+                    aria-haspopup="listbox"
+                    aria-expanded="false"
+                >
+                    Ingrédients
+                    <img
+                        src="./assets/img/icons/up-arrow.svg"
+                        alt="flèche indiquant l'état du menu"
+                        class="up-arrow"
+                    />
+                </button>
+                <datalist
+                    class="dropdown-content list-group"
+                    aria-labelledby="custom-select-ingredients"
+                >
+                    <span class="search">
+                        <input
+                            type="search"
+                            class="form-control"
+                            placeholder=""
+                        />
+                        <img
+                            class="close"
+                            src="./assets/img/icons/close.svg"
+                            alt="Reset search"
+                        />
+                        <button type="submit">
+                            <i class="bi bi-search"></i>
+                        </button>
+                    </span>
+                </datalist>
+            </div>
+        </template>
     </body>
 </html>

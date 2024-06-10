@@ -22,9 +22,10 @@ export class RecipeCard {
     }
 
     renderCard(recipe) {
-
         return `
-            <article class="card recipe-card col-sm-10 col-lg-6 col-xl-3">
+            <article class="card recipe-card col-sm-10 col-lg-6 col-xl-3"
+            id="${recipe.id}"
+            >
                 <figure class="recipe-image">
                     <img class="w-100" src="./assets/img/Recettes/thumbnails/${
                         recipe.image
@@ -59,7 +60,7 @@ export class RecipeCard {
 
     updateRecipes(recipes) {
         this.container.innerHTML = "";
-        recipes.forEach((recipe) => {
+        this.recipes.forEach((recipe) => {
             const recipeElement = this.renderCard(recipe);
             this.container.innerHTML += recipeElement;
         });

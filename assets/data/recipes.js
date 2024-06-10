@@ -1568,7 +1568,7 @@ export const recipes = [
         description:
             "Préchauffez le fours à 200°. Étaler la pate. La mettre dans un moule. Battre les oeufs avec le sucre. Ajouter le jus de citron et le beurre. Verser le tout sur la pate. Au four 30 minutes. Bon appetit ",
         appliance: "Four",
-        utensils: ["rouleau à patisserie", "moule à tarte", "presse citron"],
+        utensils: ["rouleau à patisserie", "moule à tarte", "Presse citron"],
     },
     {
         id: 44,
