@@ -501,7 +501,7 @@ export const recipes = [
         servings: 2,
         ingredients: [
             {
-                ingredient: "Saucisse bretonne ou de Toulouse",
+                ingredient: "Saucisse bretonne",
                 quantity: 2,
             },
             {
@@ -768,7 +768,7 @@ export const recipes = [
                 unit: "grammes",
             },
             {
-                ingredient: "Viande hachée 1% de matière grasse",
+                ingredient: "Viande hachée",
                 quantity: 400,
                 unit: "grammes",
             },

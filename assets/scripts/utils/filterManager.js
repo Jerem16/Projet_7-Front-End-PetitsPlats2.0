@@ -1,13 +1,8 @@
-export function getActiveFilters() {
-    return (
-        JSON.parse(sessionStorage.getItem("filters")) || {
-            ingredients: [],
-            appliance: [],
-            utensils: [],
-        }
-    );
-}
-
+import {
+    get_SStorage,
+    save_SStorage,
+    remove_SStorage,
+} from "./sessionStorage.js";
 export class RecipeFilter {
     constructor(recipes) {
         this.recipes = recipes;
@@ -49,10 +44,17 @@ export class RecipeFilter {
     }
 
     mainFilterRecipes(query) {
+        remove_SStorage();
         if (query.length < 3) {
             this.filteredData = this.originalData;
         } else {
             const loweredQuery = query.toLowerCase();
+
+            const selectedFilters = get_SStorage();
+            if (!selectedFilters["main"].includes(loweredQuery)) {
+                selectedFilters["main"].push(loweredQuery);
+            }
+            save_SStorage(selectedFilters);
             this.filteredData = this.originalData.filter((recipe) => {
                 return (
                     recipe.name.includes(loweredQuery) ||
@@ -63,7 +65,6 @@ export class RecipeFilter {
                 );
             });
         }
-        // this.filteredData = this.applyFilters(this.filteredData);
         console.log(this.filteredData);
         return this.filteredData;
     }
@@ -77,11 +78,11 @@ export class RecipeFilter {
         });
         const ingredientsArray = Array.from(ingredients);
 
-        const appliances = new Set();
+        const appliance = new Set();
         this.newFilteredData.forEach((item) => {
-            appliances.add(item.appliance);
+            appliance.add(item.appliance);
         });
-        const appliancesArray = Array.from(appliances);
+        const appliancesArray = Array.from(appliance);
 
         const utensils = new Set();
         this.newFilteredData.forEach((recipe) => {
@@ -93,9 +94,10 @@ export class RecipeFilter {
 
         const advancedFiltersObject = {
             ingredients: ingredientsArray,
-            appliances: appliancesArray,
+            appliance: appliancesArray,
             utensils: utensilsArray,
         };
+        // console.log("advancedFiltersObject :", advancedFiltersObject);
         return advancedFiltersObject;
     }
 
@@ -116,7 +118,7 @@ export class RecipeFilter {
                 recipe.utensils.includes(utensil)
             );
 
-            return hasIngredients && hasAppliance && hasUtensils;
+            return hasAppliance && hasIngredients && hasUtensils;
         });
     }
 
@@ -124,11 +126,5 @@ export class RecipeFilter {
         this.newFilteredData = this.updateFilteredRecipes(filters);
         const advancedFilters = this.getAdvancedFilters();
         return advancedFilters;
-    }
-
-    updateView() {
-        // new FilterTemplate(this.filteredData).updateFilter();
-        // new RecipeCard(this.filteredData).updateRecipes();
-        // new Title(this.filteredData).updateTitle();
     }
 }

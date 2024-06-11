@@ -4,7 +4,7 @@ export class AdvancedFilters {
         this.navFilter = document.getElementById("filter-research");
     }
 
-    render() {
+    async render() {
         this.data.forEach((item) => {
             const key = Object.keys(item)[0];
             const value = item[key];
@@ -111,7 +111,9 @@ export class AdvancedFilters {
     }
 }
 
-export function filtersButtons(advancedSearch) {
+export async function filtersButtons(advancedSearch) {
+    const navFilter = document.getElementById("filter-research");
+    navFilter.innerHTML = "";
     const filterMapper = new AdvancedFilters(advancedSearch);
     return filterMapper.render();
 }

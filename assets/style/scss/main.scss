@@ -3,6 +3,7 @@
 
 html {
     background: $white;
+    @include hide-scrollbar;
 }
 
 body {
@@ -93,16 +94,64 @@ body {
             }
         }
     }
+    main {
+        margin: auto;
+    }
 }
-
+.close {
+    position: absolute;
+    top: 0;
+    cursor: pointer;
+    width: 17px;
+    height: 17px;
+    right: 16px;
+    border: none;
+    outline: none;
+    padding: 0;
+    background: transparent;
+    img {
+        @include absolute-full;
+    }
+}
 #filter-research {
     display: flex;
     justify-content: space-between;
     position: relative;
     z-index: 10;
+    height: fit-content;
     .active {
         z-index: 10;
     }
+    .tag-bar {
+        position: relative;
+        z-index: 0;
+        gap: 2.3rem;
+        height: fit-content;
+        .tag {
+            position: relative;
+            justify-content: space-between;
+            display: inline-flex;
+            cursor: pointer;
+            border-radius: 10px;
+            background: #ffd15b;
+            align-items: baseline;
+            color: #000;
+            height: 53px;
+            p {
+                @include ellipse();
+                padding: 17px 18px;
+                max-width: 85%;
+                font-size: 14px;
+                font-weight: 400;
+                line-height: normal;
+                z-index: 1;
+            }
+            .close {
+                margin: 14px 0 17px 60px;
+            }
+        }
+    }
+
     .filter-container {
         position: relative;
         display: inline-block;
@@ -150,6 +199,10 @@ body {
             max-height: 324px;
             background-color: $white;
             @include hide-scrollbar;
+            &:hover {
+                scrollbar-color: $lightGrey $white;
+                scrollbar-width: thin;
+            }
             .search {
                 height: 36px;
                 width: 100%;
@@ -229,21 +282,8 @@ body {
 
                 .close {
                     display: none;
-                    position: absolute;
-                    top: 0;
-                    cursor: pointer;
-                    width: 17px;
-                    height: 17px;
-                    right: 16px;
                     margin: 10px 0;
                     border-radius: 50%;
-                    border: none;
-                    outline: none;
-                    padding: 0;
-                    background: transparent;
-                    img {
-                        @include absolute-full;
-                    }
                 }
                 &:hover,
                 &:focus {
@@ -263,20 +303,26 @@ body {
 
     h2 {
         @include text-style($primary-font, 21px, 400, 22px, $dark);
-        margin-top: 25px;
+        margin: 1.75rem 0;
         padding: 12px 0;
-        height: 45px;
+        min-height: 45px;
+        height: fit-content;
         text-align: right;
+    }
+    .text {
+        // color: $red;
+        text-align: center !important;
+        margin: auto;
     }
 }
 
 #recipes_cards {
     display: flex;
     justify-content: space-between;
-    gap: 3.5rem 2.5rem !important;
-
+    gap: 3.5rem 0rem !important;
+    margin: auto;
     margin-top: 2.5rem;
-    padding-right: 0 !important;
+    padding: 0 !important;
     .recipe {
         &-card {
             width: calc(100vw - 72px);
@@ -286,7 +332,6 @@ body {
             background: $white;
             box-shadow: $filerShadow;
             position: relative;
-            margin: auto;
             height: 762px;
         }
 
@@ -332,7 +377,8 @@ body {
             max-height: 4.75rem;
             margin-bottom: 2rem !important;
             display: block;
-
+            @include line-clamp(4, 1.5em);
+            cursor: pointer;
             @include hide-scrollbar;
         }
         &-ingredients {
@@ -360,5 +406,10 @@ body {
     }
     .custom-row-gap {
         gap: 1.5rem;
+    }
+    #last {
+        background: transparent;
+        border: none;
+        height: 0px;
     }
 }

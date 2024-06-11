@@ -1,3 +1,4 @@
+import { get_SStorage, save_SStorage } from "../utils/sessionStorage.js";
 export class AdvancedOptions {
     constructor(id, options) {
         this.id = id;
@@ -9,7 +10,6 @@ export class AdvancedOptions {
         this.id.forEach((filter) => {
             const key = Object.keys(filter)[0];
             const datalist = document.getElementById(`datalist-${key}`);
-            const searchSpan = datalist.querySelector(".search");
             this.options[key].forEach((item) => {
                 this.addFilterOption(item, datalist, key);
             });
@@ -75,34 +75,39 @@ export class AdvancedOptions {
     }
 
     updateSelectedFilters(type, item) {
-        const selectedFilters = JSON.parse(
-            sessionStorage.getItem("filters")
-        ) || { ingredients: [], appliances: [], utensils: [] };
+        const selectedFilters = get_SStorage();
         if (!selectedFilters[type].includes(item)) {
             selectedFilters[type].push(item);
         }
-        sessionStorage.setItem("filters", JSON.stringify(selectedFilters));
+        save_SStorage(selectedFilters);
         return selectedFilters;
     }
 
     removeSelectedFilter(type, item) {
-        const selectedFilters = JSON.parse(
-            sessionStorage.getItem("filters")
-        ) || { ingredients: [], appliances: [], utensils: [] };
+        const selectedFilters = get_SStorage();
         const index = selectedFilters[type].indexOf(item);
         if (index !== -1) {
             selectedFilters[type].splice(index, 1);
         }
-        sessionStorage.setItem("filters", JSON.stringify(selectedFilters));
+        save_SStorage(selectedFilters);
         return selectedFilters;
     }
 
     updateFilter(selectedFilters) {
-        // const filteredRecipes = window.filterRecipes(
-        //     window.recipes,
-        //     selectedFilters
-        // );
-        // new RecipeCard(filteredRecipes).updateRecipes(filteredRecipes);
-        // new Title(filteredRecipes).updateTitle();
+        ["ingredients", "appliance", "utensils"].forEach((key) => {
+            const datalist = document.getElementById(`datalist-${key}`);
+            const options = datalist.querySelectorAll(".filter-item");
+            options.forEach((option) => {
+                if (
+                    selectedFilters[key].includes(
+                        option.getAttribute("data-filter")
+                    )
+                ) {
+                    option.style.display = "";
+                } else {
+                    option.style.display = "none";
+                }
+            });
+        });
     }
 }

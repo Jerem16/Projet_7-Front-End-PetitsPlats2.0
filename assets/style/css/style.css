@@ -11846,6 +11846,12 @@ textarea.form-control-lg {
 }
 html {
   background: #fff;
+  overflow-y: scroll;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+html::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
 }
 
 body {
@@ -11940,15 +11946,70 @@ body .header form button:hover {
 body .header form button:hover i {
   color: #1b1b1b;
 }
+body main {
+  margin: auto;
+}
+
+.close {
+  position: absolute;
+  top: 0;
+  cursor: pointer;
+  width: 17px;
+  height: 17px;
+  right: 16px;
+  border: none;
+  outline: none;
+  padding: 0;
+  background: transparent;
+}
+.close img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
 
 #filter-research {
   display: flex;
   justify-content: space-between;
   position: relative;
   z-index: 10;
+  height: fit-content;
 }
 #filter-research .active {
   z-index: 10;
+}
+#filter-research .tag-bar {
+  position: relative;
+  z-index: 0;
+  gap: 2.3rem;
+  height: fit-content;
+}
+#filter-research .tag-bar .tag {
+  position: relative;
+  justify-content: space-between;
+  display: inline-flex;
+  cursor: pointer;
+  border-radius: 10px;
+  background: #ffd15b;
+  align-items: baseline;
+  color: #000;
+  height: 53px;
+}
+#filter-research .tag-bar .tag p {
+  display: block;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  padding: 17px 18px;
+  max-width: 85%;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: normal;
+  z-index: 1;
+}
+#filter-research .tag-bar .tag .close {
+  margin: 14px 0 17px 60px;
 }
 #filter-research .filter-container {
   position: relative;
@@ -12001,6 +12062,10 @@ body .header form button:hover i {
 }
 #filter-research .filter-container .dropdown-content::-webkit-scrollbar {
   display: none; /* Safari and Chrome */
+}
+#filter-research .filter-container .dropdown-content:hover {
+  scrollbar-color: #ededed #fff;
+  scrollbar-width: thin;
 }
 #filter-research .filter-container .dropdown-content .search {
   height: 36px;
@@ -12078,25 +12143,8 @@ body .header form button:hover i {
 }
 #filter-research .filter-container .dropdown-content .tag-item .close {
   display: none;
-  position: absolute;
-  top: 0;
-  cursor: pointer;
-  width: 17px;
-  height: 17px;
-  right: 16px;
   margin: 10px 0;
   border-radius: 50%;
-  border: none;
-  outline: none;
-  padding: 0;
-  background: transparent;
-}
-#filter-research .filter-container .dropdown-content .tag-item .close img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
 }
 #filter-research .filter-container .dropdown-content .tag-item:hover .close, #filter-research .filter-container .dropdown-content .tag-item:focus .close {
   display: block;
@@ -12113,18 +12161,24 @@ body .header form button:hover i {
   font-weight: 400;
   line-height: 22px;
   color: #1b1b1b;
-  margin-top: 25px;
+  margin: 1.75rem 0;
   padding: 12px 0;
-  height: 45px;
+  min-height: 45px;
+  height: fit-content;
   text-align: right;
+}
+#filter-research .text {
+  text-align: center !important;
+  margin: auto;
 }
 
 #recipes_cards {
   display: flex;
   justify-content: space-between;
-  gap: 3.5rem 2.5rem !important;
+  gap: 3.5rem 0rem !important;
+  margin: auto;
   margin-top: 2.5rem;
-  padding-right: 0 !important;
+  padding: 0 !important;
 }
 #recipes_cards .recipe-card {
   width: calc(100vw - 72px);
@@ -12134,7 +12188,6 @@ body .header form button:hover i {
   background: #fff;
   box-shadow: drop-shadow(1px 2px 1px rgba(27, 27, 27, 0.15));
   position: relative;
-  margin: auto;
   height: 762px;
 }
 #recipes_cards .recipe-image img {
@@ -12189,6 +12242,14 @@ body .header form button:hover i {
   max-height: 4.75rem;
   margin-bottom: 2rem !important;
   display: block;
+  display: block;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  max-height: 6em;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  cursor: pointer;
   overflow-y: scroll;
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* Internet Explorer 10+ */
@@ -12222,4 +12283,9 @@ body .header form button:hover i {
 }
 #recipes_cards .custom-row-gap {
   gap: 1.5rem;
+}
+#recipes_cards #last {
+  background: transparent;
+  border: none;
+  height: 0px;
 }

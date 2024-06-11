@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="fr-FR">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="author" content="Jérémy Lemaignent" />
+        <meta
+            name="description"
+            content="Site de recettes de cuisine,  une vaste collection de recettes savoureuses et faciles à suivre, élaborées par des chefs expérimentés et passionnés ."
+        />
+        <title>Les Petits Plats</title>
+        <link rel="icon" type="image/png" href="./assets/img/favicon.svg" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+            rel="preconnect"
+            href="https://fonts.gstatic.com"
+            crossorigin=""
+        />
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Anton&amp;display=swap"
+        />
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Manrope&amp;display=swap"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css"
+        />
+        <link rel="stylesheet" href="./assets/style/css/style.css" />
+        <!-- <script type="module" src="./assets/scripts/index.js"></script> -->
+    </head>
+
+    <body class="bg-secondary">
+        <header
+            class="header text-primary px-2 px-md-5 px-sm-5 text-center position-relative align-content-center"
+        >
+            <div class="overlay"></div>
+            <img
+                class="position-absolute top-0 start-0 logo m-4 m-md-5"
+                src="./assets/img/Logo.svg"
+                alt="Logo du site : les petits plats"
+            />
+            <h1
+                class="col-10 offset-1 col-md-6 offset-md-3 position-relative fs-1 fw-bold text-uppercase my-5 px-3"
+            >
+                Cherchez parmi plus de 1500 recettes du quotidien, simples et
+                délicieuses
+            </h1>
+            <form
+                id="mSearchForm"
+                class="col-11 offset-0 col-md-8 offset-md-2 d-flex bg-white p-2 position-relative"
+            >
+                <input
+                    id="mSearchInput"
+                    class="form-control form-control-lg me-2"
+                    type="search"
+                    aria-label="Rechercher une recette, un ingrédient, ..."
+                    placeholder="Rechercher une recette, un ingrédient, ..."
+                />
+                <img
+                    id="reset_filter-research"
+                    class="close position-absolute"
+                    src="./assets/img/icons/close.svg"
+                    alt="Reset search"
+                />
+                <button
+                    class="btn btn-dark position-absolute end-0 mx-2"
+                    type="submit"
+                    title="search"
+                >
+                    <i class="bi bi-search"></i>
+                </button>
+            </form>
+        </header>
+
+        <main class="container-fluid px-5 px-sm-0 px-lg-5">
+            <nav
+                id="filter-research"
+                class="filter-research d-flex flex-wrap flex-md-wrap px-5 px-sm-3 gap-sm-0 gap-md-3 col-12"
+            >
+                <div
+                    class="filter-container col-12 col-sm-3 col-md-3 col-lg-2 mb-3"
+                    id="filter-by-ingredients"
+                >
+                    <button
+                        class="custom-select btn"
+                        id="custom-select-ingredients"
+                        aria-haspopup="listbox"
+                        aria-expanded="false"
+                        aria-label="Ouvre le menu déroulant de tri par Ingrédients"
+                    >
+                        Ingrédients<img
+                            src="./assets/img/icons/up-arrow.svg"
+                            alt="flèche indiquant l'état du menu"
+                            class="up-arrow"
+                        />
+                    </button>
+                    <datalist
+                        class="dropdown-content list-group"
+                        id="datalist-ingredients"
+                        aria-labelledby="custom-select-ingredients"
+                        style="display: none"
+                    >
+                        <span id="search-ingredients" class="search">
+                            <input
+                                type="search"
+                                id="input-ingredients"
+                                class="form-control"
+                                placeholder=""
+                                aria-label="Rechercher un Ingrédients"
+                            />
+                            <img
+                                class="close"
+                                src="./assets/img/icons/close.svg"
+                                alt="Reset search"
+                            />
+                            <button type="submit">
+                                <i class="bi bi-search"></i>
+                            </button>
+                        </span>
+                        <option
+                            class="list-group-item filter-item"
+                            data-filter="lait de coco"
+                            aria-checked="false"
+                            tabindex="0"
+                        >
+                            lait de coco
+                        </option>
+                        <option
+                            class="list-group-item filter-item"
+                            data-filter="jus de citron"
+                            aria-checked="false"
+                            tabindex="0"
+                        >
+                            jus de citron
+                        </option>
+                        <option
+                            class="list-group-item filter-item"
+                            data-filter="crème de coco"
+                            aria-checked="false"
+                            tabindex="0"
+                        >
+                            crème de coco
+                        </option>
+                        <option
+                            class="list-group-item filter-item"
+                            data-filter="sucre"
+                            aria-checked="false"
+                            tabindex="0"
+                        >
+                            sucre
+                        </option>
+                        <option
+                            class="list-group-item filter-item"
+                            data-filter="glaçons"
+                            aria-checked="false"
+                            tabindex="0"
+                        >
+                            glaçons
+                        </option>
+                        <option
+                            class="list-group-item filter-item"
+                            data-filter="thon rouge (ou blanc)"
+                            aria-checked="false"
+                            tabindex="0"
+                        >
+                            thon rouge (ou blanc)
+                        </option>
+                        <option
+                            class="list-group-item filter-item"
+                            data-filter="concombre"
+                            aria-checked="false"
+                            tabindex="0"
+                        >
+                            concombre
+                        </option>
+                        <option
+                            class="list-group-item filter-item"
+                            data-filter="tomate"
+                            aria-checked="false"
+                            tabindex="0"
+                        >
+                            tomate
+                        </option>
+                        <option
+                            class="list-group-item filter-item"
+                            data-filter="carotte"
+                            aria-checked="false"
+                            tabindex="0"
+                        >
+                            carotte
+                        </option>
+                        <option
+                            class="list-group-item filter-item"
+                            data-filter="citron vert"
+                            aria-checked="false"
+                            tabindex="0"
+                        >
+                            citron vert
+                        </option>
+                    </datalist>
+                </div>
+
+                <div
+                    class="filter-container col-12 col-sm-3 col-md-3 col-lg-2 mb-3"
+                    id="filter-by-appliance"
+                >
+                    <button
+                        class="custom-select btn"
+                        id="custom-select-appliance"
+                        aria-haspopup="listbox"
+                        aria-expanded="false"
+                        aria-label="Ouvre le menu déroulant de tri par Appareils"
+                    >
+                        Appareils<img
+                            src="./assets/img/icons/up-arrow.svg"
+                            alt="flèche indiquant l'état du menu"
+                            class="up-arrow"
+                        />
+                    </button>
+                    <datalist
+                        class="dropdown-content list-group"
+                        id="datalist-appliance"
+                        aria-labelledby="custom-select-appliance"
+                        style="display: none"
+                    >
+                        <span id="search-appliance" class="search">
+                            <input
+                                type="search"
+                                id="input-appliance"
+                                class="form-control"
+                                placeholder=""
+                                aria-label="Rechercher un Appareils"
+                            />
+                            <img
+                                class="close"
+                                src="./assets/img/icons/close.svg"
+                                alt="Reset search"
+                            />
+                            <button type="submit">
+                                <i class="bi bi-search"></i>
+                            </button>
+                        </span>
+                        <option
+                            class="list-group-item filter-item"
+                            data-filter="blender"
+                            aria-checked="false"
+                            tabindex="0"
+                        >
+                            blender
+                        </option>
+                        <option
+                            class="list-group-item filter-item"
+                            data-filter="saladier"
+                            aria-checked="false"
+                            tabindex="0"
+                        >
+                            saladier
+                        </option>
+                    </datalist>
+                </div>
+
+                <div
+                    class="filter-container col-12 col-sm-3 col-md-3 col-lg-2 mb-3"
+                    id="filter-by-utensils"
+                >
+                    <button
+                        class="custom-select btn"
+                        id="custom-select-utensils"
+                        aria-haspopup="listbox"
+                        aria-expanded="false"
+                        aria-label="Ouvre le menu déroulant de tri par Ustensiles"
+                    >
+                        Ustensiles<img
+                            src="./assets/img/icons/up-arrow.svg"
+                            alt="flèche indiquant l'état du menu"
+                            class="up-arrow"
+                        />
+                    </button>
+                    <datalist
+                        class="dropdown-content list-group"
+                        id="datalist-utensils"
+                        aria-labelledby="custom-select-utensils"
+                        style="display: none"
+                    >
+                        <span id="search-utensils" class="search">
+                            <input
+                                type="search"
+                                id="input-utensils"
+                                class="form-control"
+                                placeholder=""
+                                aria-label="Rechercher un Ustensiles"
+                            />
+                            <img
+                                class="close"
+                                src="./assets/img/icons/close.svg"
+                                alt="Reset search"
+                            />
+                            <button type="submit">
+                                <i class="bi bi-search"></i>
+                            </button>
+                        </span>
+                        <option
+                            class="list-group-item filter-item"
+                            data-filter="cuillère à soupe"
+                            aria-checked="false"
+                            tabindex="0"
+                        >
+                            cuillère à soupe
+                        </option>
+                        <option
+                            class="list-group-item filter-item"
+                            data-filter="verres"
+                            aria-checked="false"
+                            tabindex="0"
+                        >
+                            verres
+                        </option>
+                        <option
+                            class="list-group-item filter-item"
+                            data-filter="presse citron"
+                            aria-checked="false"
+                            tabindex="0"
+                        >
+                            presse citron
+                        </option>
+                    </datalist>
+                </div>
+                <h2
+                    class="col-12 col-md-auto col-lg-5 text-md-end text-center"
+                    id="nb-recipes"
+                >
+                    2 recettes
+                </h2>
+                <div class="tag-bar d-flex flex-wrap flex-md-wrap col-12">
+                    <span class="col-12 col-sm-3 col-md-3 col-lg-2 tag">
+                        <p> CocoCocoCocoCocoCoco</p>
+
+                        <button
+                            class="close"
+                            type="button"
+                            tabindex="-1"
+                            title="close"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="14"
+                                height="13"
+                                viewBox="0 0 14 13"
+                                fill="none"
+                            >
+                                <path
+                                    d="M12 11.5L7 6.5M7 6.5L2 1.5M7 6.5L12 1.5M7 6.5L2 11.5"
+                                    stroke="#1B1B1B"
+                                    stroke-width="2.16667"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                />
+                            </svg>
+                        </button>
+                    </span>
+                </div>
+            </nav>
+
+            <section
+                id="recipes_cards"
+                class="row px-sm-3 gap-sm-0 gap-md-3 d-flex col-12 flex-wrap"
+            >
+                <article
+                    class="card recipe-card col-sm-10 col-lg-6 col-xl-3 m-auto m-md-3"
+                    id="1"
+                >
+                    <figure class="recipe-image">
+                        <img
+                            class="w-100"
+                            src="./assets/img/Recettes/thumbnails/recette01.webp"
+                            alt="Image de limonade de coco"
+                        />
+                    </figure>
+                    <h5 class="recipe-title">limonade de coco</h5>
+                    <time class="badge recipe-time" datetime="PT10M"
+                        >10 min</time
+                    >
+
+                    <div class="recipe-content">
+                        <section class="recipe-description">
+                            <h6 class="recipe-subtitle">RECETTE</h6>
+                            <p class="recipe-text">
+                                mettre les glaçons à votre goût dans le blender,
+                                ajouter le lait, la crème de coco, le jus de 2
+                                citrons et le sucre. mixer jusqu'à avoir la
+                                consistence désirée
+                            </p>
+                        </section>
+                        <section class="recipe-ingredients">
+                            <h6 class="recipe-subtitle">INGRÉDIENTS</h6>
+                            <div class="row custom-row-gap">
+                                <div class="col-md-5 ingredient-item">
+                                    <span class="ingredient-name"
+                                        >lait de coco</span
+                                    >
+                                    <span class="ingredient-quantity"
+                                        >400ml</span
+                                    >
+                                </div>
+
+                                <div class="col-md-5 ingredient-item">
+                                    <span class="ingredient-name"
+                                        >jus de citron</span
+                                    >
+                                    <span class="ingredient-quantity">2</span>
+                                </div>
+
+                                <div class="col-md-5 ingredient-item">
+                                    <span class="ingredient-name"
+                                        >crème de coco</span
+                                    >
+                                    <span class="ingredient-quantity"
+                                        >2cuillères à soupe</span
+                                    >
+                                </div>
+
+                                <div class="col-md-5 ingredient-item">
+                                    <span class="ingredient-name">sucre</span>
+                                    <span class="ingredient-quantity"
+                                        >30grammes</span
+                                    >
+                                </div>
+
+                                <div class="col-md-5 ingredient-item">
+                                    <span class="ingredient-name">glaçons</span>
+                                    <span class="ingredient-quantity"></span>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </article>
+
+                <article
+                    class="card recipe-card col-sm-10 col-lg-6 col-xl-3 m-auto m-md-3"
+                    id="2"
+                >
+                    <figure class="recipe-image">
+                        <img
+                            class="w-100"
+                            src="./assets/img/Recettes/thumbnails/recette02.webp"
+                            alt="Image de poisson cru à la tahitienne"
+                        />
+                    </figure>
+                    <h5 class="recipe-title">poisson cru à la tahitienne</h5>
+                    <time class="badge recipe-time" datetime="PT60M"
+                        >60 min</time
+                    >
+
+                    <div class="recipe-content">
+                        <section class="recipe-description">
+                            <h6 class="recipe-subtitle">RECETTE</h6>
+                            <p class="recipe-text">
+                                découper le thon en dés, mettre dans un plat et
+                                recouvrir de jus de citron vert (mieux vaut
+                                prendre un plat large et peu profond). laisser
+                                reposer au réfrigérateur au moins 2 heures. (si
+                                possible faites-le le soir pour le lendemain.
+                                après avoir laissé mariner le poisson, coupez le
+                                concombre en fines rondelles sans la peau et les
+                                tomates en prenant soin de retirer les pépins.
+                                rayer la carotte. ajouter les légumes au
+                                poissons avec le citron cette fois ci dans un
+                                saladier. ajouter le lait de coco. pour ajouter
+                                un peu plus de saveur vous pouvez ajouter 1 à 2
+                                cuillères à soupe de crème de coco
+                            </p>
+                        </section>
+                        <section class="recipe-ingredients">
+                            <h6 class="recipe-subtitle">INGRÉDIENTS</h6>
+                            <div class="row custom-row-gap">
+                                <div class="col-md-5 ingredient-item">
+                                    <span class="ingredient-name"
+                                        >thon rouge (ou blanc)</span
+                                    >
+                                    <span class="ingredient-quantity"
+                                        >200grammes</span
+                                    >
+                                </div>
+
+                                <div class="col-md-5 ingredient-item">
+                                    <span class="ingredient-name"
+                                        >concombre</span
+                                    >
+                                    <span class="ingredient-quantity">1</span>
+                                </div>
+
+                                <div class="col-md-5 ingredient-item">
+                                    <span class="ingredient-name">tomate</span>
+                                    <span class="ingredient-quantity">2</span>
+                                </div>
+
+                                <div class="col-md-5 ingredient-item">
+                                    <span class="ingredient-name">carotte</span>
+                                    <span class="ingredient-quantity">1</span>
+                                </div>
+
+                                <div class="col-md-5 ingredient-item">
+                                    <span class="ingredient-name"
+                                        >citron vert</span
+                                    >
+                                    <span class="ingredient-quantity">5</span>
+                                </div>
+
+                                <div class="col-md-5 ingredient-item">
+                                    <span class="ingredient-name"
+                                        >lait de coco</span
+                                    >
+                                    <span class="ingredient-quantity"
+                                        >100ml</span
+                                    >
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </article>
+
+                <article
+                    class="card recipe-card col-sm-10 col-lg-6 col-xl-3 m-auto m-md-3"
+                    id="last"
+                ></article>
+            </section>
+        </main>
+    </body>
+</html>

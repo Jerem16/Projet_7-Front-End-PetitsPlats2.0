@@ -1,7 +1,9 @@
+import { get_SStorage } from "../utils/sessionStorage.js";
 export class Title {
     constructor(data) {
         this.data = data;
         this.navFilter = document.getElementById("filter-research");
+        // this.title();
     }
 
     title() {
@@ -10,7 +12,10 @@ export class Title {
         title.id = "nb-recipes";
         const recipeCount = this.data.length;
         if (recipeCount === 0) {
-            title.innerText = `Aucune recette n'a été trouvée`;
+            const mainFilter = get_SStorage();
+            console.log(mainFilter.main[0]);
+            title.innerHTML = `Aucune recette ne contient "${mainFilter.main[0]}". <br> Vous pouvez chercher  « tarte aux pommes », « poisson », etc. `;
+            title.classList.add("text");
         } else {
             title.innerText = `${recipeCount} recette${
                 recipeCount !== 1 ? "s" : ""
