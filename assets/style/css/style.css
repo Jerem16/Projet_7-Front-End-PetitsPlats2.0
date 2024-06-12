@@ -11846,12 +11846,6 @@ textarea.form-control-lg {
 }
 html {
   background: #fff;
-  overflow-y: scroll;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* Internet Explorer 10+ */
-}
-html::-webkit-scrollbar {
-  display: none; /* Safari and Chrome */
 }
 
 body {
@@ -11970,23 +11964,16 @@ body main {
   bottom: 0;
 }
 
-#filter-research {
-  display: flex;
-  justify-content: space-between;
+#tag-filter .tag-bar {
   position: relative;
-  z-index: 10;
-  height: fit-content;
-}
-#filter-research .active {
-  z-index: 10;
-}
-#filter-research .tag-bar {
-  position: relative;
+  margin: 0 auto !important;
+  padding: 0 !important;
+  justify-content: flex-start;
   z-index: 0;
-  gap: 2.3rem;
+  gap: 2.3rem !important;
   height: fit-content;
 }
-#filter-research .tag-bar .tag {
+#tag-filter .tag-bar .tag {
   position: relative;
   justify-content: space-between;
   display: inline-flex;
@@ -11996,8 +11983,9 @@ body main {
   align-items: baseline;
   color: #000;
   height: 53px;
+  margin-top: 20px;
 }
-#filter-research .tag-bar .tag p {
+#tag-filter .tag-bar .tag p {
   display: block;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -12008,15 +11996,29 @@ body main {
   line-height: normal;
   z-index: 1;
 }
-#filter-research .tag-bar .tag .close {
+#tag-filter .tag-bar .tag .close {
   margin: 14px 0 17px 60px;
+}
+#tag-filter .tag-bar .tag .close img {
+  position: relative;
+}
+
+#filter-research {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  z-index: 10;
+  height: fit-content;
+}
+#filter-research .active {
+  z-index: 10;
 }
 #filter-research .filter-container {
   position: relative;
   display: inline-block;
   min-width: 175px;
   height: 55px;
-  margin-top: 20px;
+  margin: 20px 0 0 0;
   background-color: #fff;
   border-radius: 11px;
   cursor: pointer;
@@ -12161,7 +12163,7 @@ body main {
   font-weight: 400;
   line-height: 22px;
   color: #1b1b1b;
-  margin: 1.75rem 0;
+  margin: 1.75rem 0 0 0;
   padding: 12px 0;
   min-height: 45px;
   height: fit-content;

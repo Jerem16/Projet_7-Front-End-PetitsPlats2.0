@@ -29,20 +29,23 @@ export class RecipeCard {
                 <figure class="recipe-image">
                     <img class="w-100" src="./assets/img/Recettes/thumbnails/${
                         recipe.image
-                    }" alt="Image de ${recipe.name}" />
+                    }" alt="Image de ${recipe.name}" 
+                    width="380" 
+                    height="253" 
+                />
                 </figure>
-                <h5 class="recipe-title">${recipe.name}</h5>
+                <h3 class="recipe-title">${recipe.name}</h3>
                 <time class="badge recipe-time" datetime="PT${recipe.time}M">${
             recipe.time
         } min</time>
 
                 <div class="recipe-content">
                     <section class="recipe-description">
-                        <h6 class="recipe-subtitle">RECETTE</h6>
+                        <h4 class="recipe-subtitle">RECETTE</h4>
                         <p class="recipe-text">${recipe.description}</p>
                     </section>
                     <section class="recipe-ingredients">
-                        <h6 class="recipe-subtitle">INGRÉDIENTS</h6>
+                        <h5 class="recipe-subtitle">INGRÉDIENTS</h5>
                         <div class="row custom-row-gap">
                             ${this.renderIngredient(recipe.ingredients)}
                         </div>

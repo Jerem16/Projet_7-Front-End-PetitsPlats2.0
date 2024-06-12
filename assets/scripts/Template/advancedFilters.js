@@ -11,7 +11,7 @@ export class AdvancedFilters {
             this[key] = key;
 
             this.navFilter.innerHTML += `
-                <div class="filter-container col-12 col-sm-3 col-md-3 col-lg-2 mb-3" id="filter-by-${key}">
+                <div class="filter-container col-12 col-sm-3 col-md-3 col-lg-2" id="filter-by-${key}">
                     <button class="custom-select btn" id="custom-select-${key}" aria-haspopup="listbox" aria-expanded="false" aria-label="Ouvre le menu déroulant de tri par ${value}">
                         ${value}<img src="./assets/img/icons/up-arrow.svg" alt="flèche indiquant l'état du menu" class="up-arrow" />
                     </button>

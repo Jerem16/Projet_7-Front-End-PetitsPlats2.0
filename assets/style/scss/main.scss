@@ -3,7 +3,7 @@
 
 html {
     background: $white;
-    @include hide-scrollbar;
+    // @include hide-scrollbar;
 }
 
 body {
@@ -113,19 +113,16 @@ body {
         @include absolute-full;
     }
 }
-#filter-research {
-    display: flex;
-    justify-content: space-between;
-    position: relative;
-    z-index: 10;
-    height: fit-content;
-    .active {
-        z-index: 10;
-    }
+#tag-filter {
     .tag-bar {
+        // display: none !important;
         position: relative;
+        margin: 0 auto !important;
+        padding: 0 !important;
+        justify-content: flex-start;
+        // top: -10px;
         z-index: 0;
-        gap: 2.3rem;
+        gap: 2.3rem !important;
         height: fit-content;
         .tag {
             position: relative;
@@ -137,6 +134,7 @@ body {
             align-items: baseline;
             color: #000;
             height: 53px;
+            margin-top: 20px;
             p {
                 @include ellipse();
                 padding: 17px 18px;
@@ -148,8 +146,22 @@ body {
             }
             .close {
                 margin: 14px 0 17px 60px;
+                img {
+                    position: relative;
+                }
             }
         }
+    }
+}
+
+#filter-research {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    z-index: 10;
+    height: fit-content;
+    .active {
+        z-index: 10;
     }
 
     .filter-container {
@@ -157,7 +169,7 @@ body {
         display: inline-block;
         min-width: 175px;
         height: 55px;
-        margin-top: 20px;
+        margin: 20px 0 0 0;
         background-color: $white;
         border-radius: 11px;
         cursor: pointer;
@@ -303,14 +315,13 @@ body {
 
     h2 {
         @include text-style($primary-font, 21px, 400, 22px, $dark);
-        margin: 1.75rem 0;
+        margin: 1.75rem 0 0 0;
         padding: 12px 0;
         min-height: 45px;
         height: fit-content;
         text-align: right;
     }
     .text {
-        // color: $red;
         text-align: center !important;
         margin: auto;
     }

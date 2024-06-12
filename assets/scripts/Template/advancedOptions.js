@@ -3,7 +3,7 @@ export class AdvancedOptions {
     constructor(id, options) {
         this.id = id;
         this.options = options;
-        this.initFilters();
+        // this.initFilters();
     }
 
     initFilters() {
@@ -63,6 +63,7 @@ export class AdvancedOptions {
     addRemoveFilterListener(selectedSpan, item, datalist, key) {
         const closeButton = selectedSpan.querySelector(".close");
         closeButton.addEventListener("click", () => {
+            console.log(item, key);
             this.removeFilter(item, selectedSpan, datalist, key);
         });
     }

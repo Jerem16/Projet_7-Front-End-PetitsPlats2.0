@@ -335,35 +335,47 @@
                 >
                     2 recettes
                 </h2>
-                <div class="tag-bar d-flex flex-wrap flex-md-wrap col-12">
-                    <span class="col-12 col-sm-3 col-md-3 col-lg-2 tag">
-                        <p> CocoCocoCocoCocoCoco</p>
-
+            </nav>
+            <div class="px-5 px-sm-3" id="tag-filter">
+                <div
+                    class="d-flex flex-wrap flex-md-wrap px-5 px-sm-3 gap-sm-0 gap-md-3 col-12 tag-bar"
+                >
+                    <span
+                        class="col-12 col-sm-3 col-md-3 col-lg-2 tag"
+                        data-filter="ingredients"
+                    >
+                        <p>lait de coco</p>
                         <button
                             class="close"
                             type="button"
                             tabindex="-1"
                             title="close"
                         >
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="14"
-                                height="13"
-                                viewBox="0 0 14 13"
-                                fill="none"
-                            >
-                                <path
-                                    d="M12 11.5L7 6.5M7 6.5L2 1.5M7 6.5L12 1.5M7 6.5L2 11.5"
-                                    stroke="#1B1B1B"
-                                    stroke-width="2.16667"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                />
-                            </svg>
+                            <img
+                                src="./assets/img/icons/closeTag.svg"
+                                alt="reset tags"
+                            />
+                        </button>
+                    </span>
+                    <span
+                        class="col-12 col-sm-3 col-md-3 col-lg-2 tag"
+                        data-filter="main"
+                    >
+                        <p>Coc</p>
+                        <button
+                            class="close"
+                            type="button"
+                            tabindex="-1"
+                            title="close"
+                        >
+                            <img
+                                src="./assets/img/icons/closeTag.svg"
+                                alt="reset tags"
+                            />
                         </button>
                     </span>
                 </div>
-            </nav>
+            </div>
 
             <section
                 id="recipes_cards"

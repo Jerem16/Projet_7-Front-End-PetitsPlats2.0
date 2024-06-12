@@ -65,10 +65,12 @@ export class RecipeFilter {
                 );
             });
         }
-        console.log(this.filteredData);
         return this.filteredData;
     }
-
+    resetMainFilterRecipes() {
+        this.filteredData = this.originalData;
+        return this.filteredData;
+    }
     getAdvancedFilters() {
         const ingredients = new Set();
         this.newFilteredData.forEach((recipe) => {
@@ -97,7 +99,6 @@ export class RecipeFilter {
             appliance: appliancesArray,
             utensils: utensilsArray,
         };
-        // console.log("advancedFiltersObject :", advancedFiltersObject);
         return advancedFiltersObject;
     }
 
