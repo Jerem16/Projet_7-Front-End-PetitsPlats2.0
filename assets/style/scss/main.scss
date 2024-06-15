@@ -114,44 +114,7 @@ body {
         @include absolute-full;
     }
 }
-#tag-filter {
-    .tag-bar {
-        position: relative;
-        margin: 0 auto !important;
-        padding: 0 !important;
-        justify-content: flex-start;
-        z-index: 0;
-        gap: 2.3rem !important;
-        height: fit-content;
-        .tag {
-            position: relative;
-            justify-content: space-between;
-            display: inline-flex;
-            cursor: pointer;
-            border-radius: 10px;
-            background: #ffd15b;
-            align-items: baseline;
-            color: #000;
-            height: 53px;
-            margin-top: 20px;
-            p {
-                @include ellipse();
-                padding: 17px 18px;
-                max-width: 85%;
-                font-size: 14px;
-                font-weight: 400;
-                line-height: normal;
-                z-index: 1;
-            }
-            .close {
-                margin: 14px 0 17px 60px;
-                img {
-                    position: relative;
-                }
-            }
-        }
-    }
-}
+
 
 #filter-research {
     display: flex;
@@ -310,7 +273,6 @@ body {
                 scrollbar-color: $lightGrey $white;
                 scrollbar-width: thin;
                 input {
-                    background: #000;
                     min-width: calc(100% + 10px);
                 }
             }
@@ -328,6 +290,44 @@ h2 {
     min-height: 45px;
     height: fit-content;
     text-align: right;
+}
+#tag-filter {
+    .tag-bar {
+        position: relative;
+        margin: 0 auto !important;
+        padding: 0 !important;
+        justify-content: flex-start;
+        z-index: 0;
+        gap: 2.3rem !important;
+        height: fit-content;
+        .tag {
+            position: relative;
+            justify-content: space-between;
+            display: inline-flex;
+            cursor: pointer;
+            border-radius: 10px;
+            background: #ffd15b;
+            align-items: baseline;
+            color: #000;
+            height: 53px;
+            margin-top: 20px;
+            p {
+                @include ellipse();
+                padding: 17px 18px;
+                max-width: 85%;
+                font-size: 14px;
+                font-weight: 400;
+                line-height: normal;
+                z-index: 1;
+            }
+            .close {
+                margin: 14px 0 17px 60px;
+                img {
+                    position: relative;
+                }
+            }
+        }
+    }
 }
 #alert {
     position: relative;

@@ -61,7 +61,9 @@ $dark: $deepBlack;
     display: block;
     text-overflow: ellipsis;
     overflow: hidden;
+    white-space: nowrap;
 }
+
 @mixin line-clamp($lines, $line-height) {
     display: block;
     display: -webkit-box;

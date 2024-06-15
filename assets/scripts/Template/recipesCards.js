@@ -25,7 +25,25 @@ export class RecipeCard {
             )
             .join("");
     }
+    capitalizeSentences(text) {
+        // Divise le texte en phrases en utilisant le point suivi d'un espace ou de la fin de la chaîne
+        const sentences = text.split(/\. (?=[A-Za-z])|\.$/);
 
+        // Capitalise la première lettre de chaque phrase
+        const capitalizedSentences = sentences.map((sentence) => {
+            return sentence.charAt(0).toUpperCase() + sentence.slice(1);
+        });
+
+        // Rejoint les phrases avec un point et un espace
+        return capitalizedSentences.join(". ");
+    }
+    updateScrollbarStyle(datalist) {
+        if (datalist.scrollHeight > 307) {
+            datalist.classList.add("scrollbar-modified");
+        } else {
+            datalist.classList.remove("scrollbar-modified");
+        }
+    }
     renderCard(recipe) {
         return `
             <article class="card recipe-card col-sm-10 col-lg-6 col-xl-3 m-auto m-md-3"
@@ -46,7 +64,9 @@ export class RecipeCard {
                 <div class="recipe-content">
                     <section class="recipe-description">
                         <h4 class="recipe-subtitle">RECETTE</h4>
-                        <p class="recipe-text">${recipe.description}</p>
+                        <p class="recipe-text">${this.capitalizeSentences(
+                            recipe.description
+                        )}</p>
                     </section>
                     <section class="recipe-ingredients">
                         <h5 class="recipe-subtitle">INGRÉDIENTS</h5>

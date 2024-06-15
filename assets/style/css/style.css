@@ -11971,45 +11971,6 @@ body main {
   bottom: 0;
 }
 
-#tag-filter .tag-bar {
-  position: relative;
-  margin: 0 auto !important;
-  padding: 0 !important;
-  justify-content: flex-start;
-  z-index: 0;
-  gap: 2.3rem !important;
-  height: fit-content;
-}
-#tag-filter .tag-bar .tag {
-  position: relative;
-  justify-content: space-between;
-  display: inline-flex;
-  cursor: pointer;
-  border-radius: 10px;
-  background: #ffd15b;
-  align-items: baseline;
-  color: #000;
-  height: 53px;
-  margin-top: 20px;
-}
-#tag-filter .tag-bar .tag p {
-  display: block;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  padding: 17px 18px;
-  max-width: 85%;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: normal;
-  z-index: 1;
-}
-#tag-filter .tag-bar .tag .close {
-  margin: 14px 0 17px 60px;
-}
-#tag-filter .tag-bar .tag .close img {
-  position: relative;
-}
-
 #filter-research {
   display: flex;
   justify-content: space-between;
@@ -12165,7 +12126,6 @@ body main {
   scrollbar-width: thin;
 }
 #filter-research .filter-container .scrollbar-modified:hover input {
-  background: #000;
   min-width: calc(100% + 10px);
 }
 #filter-research .text {
@@ -12184,6 +12144,46 @@ h2, .h2 {
   min-height: 45px;
   height: fit-content;
   text-align: right;
+}
+
+#tag-filter .tag-bar {
+  position: relative;
+  margin: 0 auto !important;
+  padding: 0 !important;
+  justify-content: flex-start;
+  z-index: 0;
+  gap: 2.3rem !important;
+  height: fit-content;
+}
+#tag-filter .tag-bar .tag {
+  position: relative;
+  justify-content: space-between;
+  display: inline-flex;
+  cursor: pointer;
+  border-radius: 10px;
+  background: #ffd15b;
+  align-items: baseline;
+  color: #000;
+  height: 53px;
+  margin-top: 20px;
+}
+#tag-filter .tag-bar .tag p {
+  display: block;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 17px 18px;
+  max-width: 85%;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: normal;
+  z-index: 1;
+}
+#tag-filter .tag-bar .tag .close {
+  margin: 14px 0 17px 60px;
+}
+#tag-filter .tag-bar .tag .close img {
+  position: relative;
 }
 
 #alert {

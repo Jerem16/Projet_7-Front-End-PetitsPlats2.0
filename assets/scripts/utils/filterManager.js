@@ -68,10 +68,12 @@ export class FilterManager {
         }
         return this.filteredData;
     }
+
     resetMainFilterRecipes() {
         this.filteredData = this.originalData;
         return this.filteredData;
     }
+    
     getAdvancedFilters() {
         const ingredients = new Set();
         this.newFilteredData.forEach((recipe) => {
