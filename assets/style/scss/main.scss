@@ -3,7 +3,7 @@
 
 html {
     background: $white;
-    // @include hide-scrollbar;
+    @include hide-scrollbar;
 }
 
 body {
@@ -96,6 +96,7 @@ body {
     }
     main {
         margin: auto;
+        min-height: calc(100vh - 667px);
     }
 }
 .close {
@@ -115,12 +116,10 @@ body {
 }
 #tag-filter {
     .tag-bar {
-        // display: none !important;
         position: relative;
         margin: 0 auto !important;
         padding: 0 !important;
         justify-content: flex-start;
-        // top: -10px;
         z-index: 0;
         gap: 2.3rem !important;
         height: fit-content;
@@ -201,7 +200,6 @@ body {
                 }
             }
         }
-
         .dropdown-content {
             display: none;
             position: relative;
@@ -211,10 +209,6 @@ body {
             max-height: 324px;
             background-color: $white;
             @include hide-scrollbar;
-            &:hover {
-                scrollbar-color: $lightGrey $white;
-                scrollbar-width: thin;
-            }
             .search {
                 height: 36px;
                 width: 100%;
@@ -311,22 +305,40 @@ body {
                 margin-top: 9px;
             }
         }
-    }
-
-    h2 {
-        @include text-style($primary-font, 21px, 400, 22px, $dark);
-        margin: 1.75rem 0 0 0;
-        padding: 12px 0;
-        min-height: 45px;
-        height: fit-content;
-        text-align: right;
+        .scrollbar-modified {
+            &:hover {
+                scrollbar-color: $lightGrey $white;
+                scrollbar-width: thin;
+                input {
+                    background: #000;
+                    min-width: calc(100% + 10px);
+                }
+            }
+        }
     }
     .text {
         text-align: center !important;
         margin: auto;
     }
 }
-
+h2 {
+    @include text-style($primary-font, 21px, 400, 22px, $dark);
+    margin: 1.75rem 0 0 0;
+    padding: 12px 0;
+    min-height: 45px;
+    height: fit-content;
+    text-align: right;
+}
+#alert {
+    position: relative;
+    padding-top: 40px;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: center;
+    height: calc(100vh - 890px);
+    min-height: 75px;
+}
 #recipes_cards {
     display: flex;
     justify-content: space-between;

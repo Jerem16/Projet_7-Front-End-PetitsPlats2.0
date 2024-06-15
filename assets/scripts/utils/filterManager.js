@@ -3,7 +3,8 @@ import {
     save_SStorage,
     remove_SStorage,
 } from "./sessionStorage.js";
-export class RecipeFilter {
+import { escapeHTML } from "./noXss.js";
+export class FilterManager {
     constructor(recipes) {
         this.recipes = recipes;
         this.originalData = this.toLowerCase();
@@ -48,7 +49,7 @@ export class RecipeFilter {
         if (query.length < 3) {
             this.filteredData = this.originalData;
         } else {
-            const loweredQuery = query.toLowerCase();
+            const loweredQuery = escapeHTML(query.toLowerCase());
 
             const selectedFilters = get_SStorage();
             if (!selectedFilters["main"].includes(loweredQuery)) {
@@ -78,13 +79,13 @@ export class RecipeFilter {
                 ingredients.add(item.ingredient);
             });
         });
-        const ingredientsArray = Array.from(ingredients);
+        const ingredientsArray = Array.from(ingredients).sort();
 
         const appliance = new Set();
         this.newFilteredData.forEach((item) => {
             appliance.add(item.appliance);
         });
-        const appliancesArray = Array.from(appliance);
+        const appliancesArray = Array.from(appliance).sort();
 
         const utensils = new Set();
         this.newFilteredData.forEach((recipe) => {
@@ -92,7 +93,7 @@ export class RecipeFilter {
                 utensils.add(utensil);
             });
         });
-        const utensilsArray = Array.from(utensils);
+        const utensilsArray = Array.from(utensils).sort();
 
         const advancedFiltersObject = {
             ingredients: ingredientsArray,

@@ -1,12 +1,12 @@
 import { AdvancedOptions } from "./advancedOptions.js";
-import { RecipeFilter } from "../utils/filterManager.js";
+import { FilterManager } from "../utils/filterManager.js";
 import { recipes } from "../../data/recipes.js";
 export class TagManager extends AdvancedOptions {
     constructor(filters) {
         super();
         this.filters = filters;
         this.tagFilter = document.getElementById("tag-filter");
-        this.recipeFilter = new RecipeFilter(recipes);
+        this.filterManager = new FilterManager(recipes);
     }
 
     createTagBar() {
@@ -22,7 +22,7 @@ export class TagManager extends AdvancedOptions {
     }
 
     createTag(tagName, filterType) {
-        const tag = document.createElement("span");
+        const tag = document.createElement("div");
         tag.classList.add("col-12", "col-sm-3", "col-md-3", "col-lg-2", "tag");
         tag.setAttribute("data-filter", filterType);
         tag.innerHTML = `
@@ -52,7 +52,7 @@ export class TagManager extends AdvancedOptions {
         );
         if (filterType === "main") {
             sessionStorage.setItem("filters", JSON.stringify(this.filters));
-            this.recipeFilter.resetMainFilterRecipes();
+            this.filterManager.resetMainFilterRecipes();
         } else {
             const datalist = document.getElementById(`datalist-${filterType}`);
             const selectedSpan = document.querySelector(

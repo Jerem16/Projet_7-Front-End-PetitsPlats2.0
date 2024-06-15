@@ -60,53 +60,6 @@ export class AdvancedFilters {
                     upArrow.classList.remove("down-arrow");
                 }
             });
-
-            const input = dropdownContent.querySelector(".search input");
-            const closeButton = dropdownContent.querySelector(".search .close");
-            const submit = dropdownContent.querySelector(
-                ".search button[type=submit]"
-            );
-
-            input.addEventListener("input", () => {
-                closeButton.style.display = input.value ? "block" : "none";
-                this.filterInput(input, dropdownContent);
-            });
-
-            input.addEventListener("keydown", (event) => {
-                if (event.key === "Enter") {
-                    event.preventDefault();
-                    submit.click();
-                }
-            });
-
-            submit.addEventListener("click", (event) => {
-                event.preventDefault();
-                input.value = "";
-                closeButton.style.display = "none";
-                this.filterInput(input, dropdownContent);
-            });
-
-            closeButton.addEventListener("click", () => {
-                input.value = "";
-                input.focus();
-                closeButton.style.display = "none";
-                this.filterInput(input, dropdownContent);
-            });
-        });
-    }
-
-    filterInput(input, datalist) {
-        const inputValue = input.value.toLowerCase();
-        const options = datalist.querySelectorAll(
-            ".list-group-item.filter-item"
-        );
-
-        options.forEach((option) => {
-            option.style.display =
-                inputValue.length < 3 ||
-                option.textContent.toLowerCase().includes(inputValue)
-                    ? ""
-                    : "none";
         });
     }
 }

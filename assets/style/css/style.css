@@ -11846,6 +11846,12 @@ textarea.form-control-lg {
 }
 html {
   background: #fff;
+  overflow-y: scroll;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+html::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
 }
 
 body {
@@ -11942,6 +11948,7 @@ body .header form button:hover i {
 }
 body main {
   margin: auto;
+  min-height: calc(100vh - 667px);
 }
 
 .close {
@@ -12065,10 +12072,6 @@ body main {
 #filter-research .filter-container .dropdown-content::-webkit-scrollbar {
   display: none; /* Safari and Chrome */
 }
-#filter-research .filter-container .dropdown-content:hover {
-  scrollbar-color: #ededed #fff;
-  scrollbar-width: thin;
-}
 #filter-research .filter-container .dropdown-content .search {
   height: 36px;
   width: 100%;
@@ -12157,7 +12160,20 @@ body main {
 #filter-research .filter-container .dropdown-content option:first-of-type {
   margin-top: 9px;
 }
-#filter-research h2, #filter-research .h2 {
+#filter-research .filter-container .scrollbar-modified:hover {
+  scrollbar-color: #ededed #fff;
+  scrollbar-width: thin;
+}
+#filter-research .filter-container .scrollbar-modified:hover input {
+  background: #000;
+  min-width: calc(100% + 10px);
+}
+#filter-research .text {
+  text-align: center !important;
+  margin: auto;
+}
+
+h2, .h2 {
   font-family: Anton, sans-serif;
   font-size: 21px;
   font-weight: 400;
@@ -12169,9 +12185,16 @@ body main {
   height: fit-content;
   text-align: right;
 }
-#filter-research .text {
-  text-align: center !important;
-  margin: auto;
+
+#alert {
+  position: relative;
+  padding-top: 40px;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 890px);
+  min-height: 75px;
 }
 
 #recipes_cards {

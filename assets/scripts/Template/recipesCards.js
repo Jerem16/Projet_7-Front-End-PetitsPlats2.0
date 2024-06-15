@@ -9,12 +9,17 @@ export class RecipeCard {
             .map(
                 (ingredient) => `
                     <div class="col-md-5 ingredient-item">
-                        <span class="ingredient-name">${
-                            ingredient.ingredient
-                        }</span>
-                        <span class="ingredient-quantity">${
-                            ingredient.quantity ? ingredient.quantity + "" : ""
-                        }${ingredient.unit ? ingredient.unit : ""}</span>
+                        <span class="ingredient-name">
+                            ${ingredient.ingredient}
+                        </span>
+                        <span class="ingredient-quantity">
+                            ${
+                                ingredient.quantity
+                                    ? ingredient.quantity + ""
+                                    : ""
+                            }
+                            ${ingredient.unit ? ingredient.unit : ""}
+                        </span>
                     </div>
                 `
             )
@@ -27,18 +32,17 @@ export class RecipeCard {
             id="${recipe.id}"
             >
                 <figure class="recipe-image">
-                    <img class="w-100" src="./assets/img/Recettes/thumbnails/${
-                        recipe.image
-                    }" alt="Image de ${recipe.name}" 
+                    <img class="w-100" 
+                    src="./assets/img/recipes/thumbnails/${recipe.image}"
+                    alt="${recipe.name}" 
                     width="380" 
                     height="253" 
-                />
+                    />
                 </figure>
                 <h3 class="recipe-title">${recipe.name}</h3>
-                <time class="badge recipe-time" datetime="PT${recipe.time}M">${
-            recipe.time
-        } min</time>
-
+                <time class="badge recipe-time" datetime="PT${recipe.time}M">
+                    ${recipe.time} min
+                </time>
                 <div class="recipe-content">
                     <section class="recipe-description">
                         <h4 class="recipe-subtitle">RECETTE</h4>
@@ -56,8 +60,8 @@ export class RecipeCard {
     }
     lastElem() {
         return `
-            <article class="card recipe-card col-sm-10 col-lg-6 col-xl-3 m-auto m-md-3" id="last"
-            >
+            <article class="card recipe-card col-sm-10 col-lg-6 col-xl-3 m-auto m-md-3" 
+            id="last">
             </article>
         `;
     }

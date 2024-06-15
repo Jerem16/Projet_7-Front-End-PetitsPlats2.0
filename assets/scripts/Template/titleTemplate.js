@@ -3,7 +3,7 @@ export class Title {
     constructor(data) {
         this.data = data;
         this.navFilter = document.getElementById("filter-research");
-        // this.title();
+        this.tagFilter = document.getElementById("tag-filter");
     }
 
     title() {
@@ -12,23 +12,33 @@ export class Title {
         title.id = "nb-recipes";
         const recipeCount = this.data.length;
         if (recipeCount === 0) {
+            this.alert();
+        }
+        title.innerText = `${recipeCount} recette${
+            recipeCount !== 1 ? "s" : ""
+        }`;
+
+        return this.navFilter.appendChild(title);
+    }
+
+    alert() {
+        const title = document.createElement("h2");
+        title.className = "col-12 col-md-auto text-center";
+        title.id = "alert";
+        const recipeCount = this.data.length;
+        if (recipeCount === 0) {
             const mainFilter = get_SStorage();
-            console.log(mainFilter.main[0]);
             title.innerHTML = `Aucune recette ne contient "${mainFilter.main[0]}". <br> Vous pouvez chercher  « tarte aux pommes », « poisson », etc. `;
             title.classList.add("text");
+            this.tagFilter.innerHTML = "";
         } else {
-            title.innerText = `${recipeCount} recette${
-                recipeCount !== 1 ? "s" : ""
-            }`;
+            title.remove();
         }
-
-        return title;
+        return this.tagFilter.appendChild(title);
     }
 
     render() {
-        const title = this.title();
-
-        this.navFilter.appendChild(title);
+        this.title();
     }
 
     updateTitle() {
@@ -36,14 +46,6 @@ export class Title {
         if (oldTitle) {
             oldTitle.remove();
         }
-        const title = document.createElement("h2");
-        title.className = "col-12 col-md-auto col-lg-5 text-md-end text-center";
-        title.id = "nb-recipes";
-        let recipeCount = this.data.length;
-        title.innerText = `${recipeCount} recette${
-            recipeCount !== 1 ? "s" : ""
-        }`;
-
-        this.navFilter.appendChild(title);
+        this.title();
     }
 }

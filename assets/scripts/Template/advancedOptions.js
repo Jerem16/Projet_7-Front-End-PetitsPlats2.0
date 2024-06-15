@@ -1,22 +1,74 @@
 import { get_SStorage, save_SStorage } from "../utils/sessionStorage.js";
+import { escapeHTML } from "../utils/noXss.js";
 export class AdvancedOptions {
     constructor(id, options) {
         this.id = id;
         this.options = options;
-        // this.initFilters();
     }
-
+    updateScrollbarStyle(datalist) {
+        if (datalist.scrollHeight > 307) {
+            datalist.classList.add("scrollbar-modified");
+        } else {
+            datalist.classList.remove("scrollbar-modified");
+        }
+    }
     initFilters() {
         this.id.forEach((filter) => {
             const key = Object.keys(filter)[0];
             const datalist = document.getElementById(`datalist-${key}`);
+
             this.options[key].forEach((item) => {
                 this.addFilterOption(item, datalist, key);
+            });
+
+            // Adding event listeners
+            const input = datalist.querySelector(".search input");
+            const closeButton = datalist.querySelector(".search .close");
+            const submit = datalist.querySelector(
+                ".search button[type=submit]"
+            );
+
+            if (datalist) {
+                datalist.addEventListener("mouseover", () => {
+                    this.updateScrollbarStyle(datalist);
+                });
+                datalist.addEventListener("mouseout", () => {
+                    this.updateScrollbarStyle(datalist);
+                });
+            }
+
+            input.addEventListener("input", () => {
+                closeButton.style.display = input.value ? "block" : "none";
+                this.filterInput(input, datalist);
+            });
+
+            input.addEventListener("keydown", (event) => {
+                if (event.key === "Enter") {
+                    event.preventDefault();
+                    submit.click();
+                }
+            });
+
+            submit.addEventListener("click", (event) => {
+                event.preventDefault();
+                event.stopPropagation();
+                this.filterInput(input, datalist);
+                closeButton.style.display = "none";
+                input.value = "";
+            });
+
+            closeButton.addEventListener("click", () => {
+                input.value = "";
+                input.focus();
+                closeButton.style.display = "none";
+                this.filterInput(input, datalist);
             });
         });
     }
 
     addSelectedFilter(item, searchSpan, datalist, key) {
+        const input = datalist.querySelector(".search input");
+        input.value = "";
         const selectedSpan = this.createFilterSpan(item);
         searchSpan.after(selectedSpan);
         this.addRemoveFilterListener(selectedSpan, item, datalist, key);
@@ -36,6 +88,7 @@ export class AdvancedOptions {
         selectedSpan.setAttribute("role", "option");
         selectedSpan.setAttribute("data-filter", item);
         selectedSpan.setAttribute("aria-checked", "true");
+        selectedSpan.setAttribute("data-visible", "true");
         selectedSpan.tabIndex = 0;
         selectedSpan.textContent = item;
         selectedSpan.innerHTML += `<button class="close" type="button" tabindex="-1"><img src="./assets/img/icons/closeYellow.svg" alt="Reset" /></button>`;
@@ -47,6 +100,7 @@ export class AdvancedOptions {
         option.className = "list-group-item filter-item";
         option.setAttribute("data-filter", item);
         option.setAttribute("aria-checked", "false");
+        option.setAttribute("data-visible", "true");
         option.tabIndex = 0;
         option.textContent = item;
         return option;
@@ -63,7 +117,6 @@ export class AdvancedOptions {
     addRemoveFilterListener(selectedSpan, item, datalist, key) {
         const closeButton = selectedSpan.querySelector(".close");
         closeButton.addEventListener("click", () => {
-            console.log(item, key);
             this.removeFilter(item, selectedSpan, datalist, key);
         });
     }
@@ -105,10 +158,27 @@ export class AdvancedOptions {
                     )
                 ) {
                     option.style.display = "";
+                    option.setAttribute("data-visible", "true");
                 } else {
                     option.style.display = "none";
+                    option.setAttribute("data-visible", "false");
                 }
             });
+        });
+    }
+
+    filterInput(input, datalist) {
+        const inputValue = input.value.toLowerCase();
+        const query = escapeHTML(inputValue);
+        const options = datalist.querySelectorAll(
+            'option[data-visible="true"]'
+        );
+        options.forEach((option) => {
+            option.style.display =
+                inputValue.length < 3 ||
+                option.textContent.toLowerCase().includes(query)
+                    ? ""
+                    : "none";
         });
     }
 }
