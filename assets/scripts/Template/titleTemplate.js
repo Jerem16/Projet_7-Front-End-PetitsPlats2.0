@@ -12,11 +12,13 @@ export class Title {
         title.id = "nb-recipes";
         const recipeCount = this.data.length;
         if (recipeCount === 0) {
+            title.innerText = "";
             this.alert();
+        } else {
+            title.innerText = `${recipeCount} recette${
+                recipeCount !== 1 ? "s" : ""
+            }`;
         }
-        title.innerText = `${recipeCount} recette${
-            recipeCount !== 1 ? "s" : ""
-        }`;
 
         return this.navFilter.appendChild(title);
     }
