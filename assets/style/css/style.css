@@ -12050,12 +12050,14 @@ body main {
   color: #7a7a7a;
   border-radius: 4px;
   line-height: 22px;
+  background: #fff !important;
 }
 #filter-research .filter-container .dropdown-content .search input:active {
   border: 1px solid #1b1b1b;
 }
 #filter-research .filter-container .dropdown-content .search input:focus {
   border: 0px solid #1b1b1b;
+  background: #fff !important;
 }
 #filter-research .filter-container .dropdown-content .search .close {
   display: none;
@@ -12121,11 +12123,11 @@ body main {
 #filter-research .filter-container .dropdown-content option:first-of-type {
   margin-top: 9px;
 }
-#filter-research .filter-container .scrollbar-modified:hover {
+#filter-research .filter-container .scrollbar-modified:hover, #filter-research .filter-container .scrollbar-modified:active, #filter-research .filter-container .scrollbar-modified:focus {
   scrollbar-color: #ededed #fff;
   scrollbar-width: thin;
 }
-#filter-research .filter-container .scrollbar-modified:hover input {
+#filter-research .filter-container .scrollbar-modified:hover .search, #filter-research .filter-container .scrollbar-modified:active .search, #filter-research .filter-container .scrollbar-modified:focus .search {
   min-width: calc(100% + 10px);
 }
 #filter-research .text {

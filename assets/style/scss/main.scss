@@ -115,7 +115,6 @@ body {
     }
 }
 
-
 #filter-research {
     display: flex;
     justify-content: space-between;
@@ -189,12 +188,14 @@ body {
                     color: $grey;
                     border-radius: 4px;
                     line-height: 22px;
+                    background: $white !important;
 
                     &:active {
                         border: 1px solid $dark;
                     }
                     &:focus {
                         border: 0px solid $dark;
+                        background: $white !important;
                     }
                 }
 
@@ -269,10 +270,12 @@ body {
             }
         }
         .scrollbar-modified {
-            &:hover {
+            &:hover,
+            &:active,
+            &:focus {
                 scrollbar-color: $lightGrey $white;
                 scrollbar-width: thin;
-                input {
+                .search {
                     min-width: calc(100% + 10px);
                 }
             }

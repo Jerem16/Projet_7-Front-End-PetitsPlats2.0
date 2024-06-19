@@ -1,6 +1,7 @@
 import { AdvancedOptions } from "./advancedOptions.js";
 import { FilterManager } from "../utils/filterManager.js";
 import { recipes } from "../../data/recipes.js";
+import { save_SStorage } from "../utils/sessionStorage.js";
 export class TagManager extends AdvancedOptions {
     constructor(filters) {
         super();
@@ -51,20 +52,21 @@ export class TagManager extends AdvancedOptions {
             (tag) => tag !== tagName
         );
         if (filterType === "main") {
-            sessionStorage.setItem("filters", JSON.stringify(this.filters));
+            save_SStorage(this.filters);
             this.filterManager.resetMainFilterRecipes();
         } else {
             const datalist = document.getElementById(`datalist-${filterType}`);
             const selectedSpan = document.querySelector(
-                `[data-filter="${tagName}"]`
+                `span[data-filter="${tagName}"]`
             );
             this.removeFilter(tagName, selectedSpan, datalist, filterType);
+            console.log(tagName);
         }
-        sessionStorage.setItem("filters", JSON.stringify(this.filters));
-        this.generateTags();
+        save_SStorage(this.filters);
+        this.renderUpdate();
     }
 
-    generateTags() {
+    renderUpdate() {
         this.tagFilter.innerHTML = "";
         const tagBar = this.createTagBar();
 

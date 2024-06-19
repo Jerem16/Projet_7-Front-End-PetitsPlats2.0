@@ -14,12 +14,11 @@ const advancedSearch = [
 ];
 
 // Reset advanced filters on reload
-get_SStorage();
+remove_SStorage();
 
 class App {
     constructor() {
         this.filters = get_SStorage();
-        console.log(this.filters);
         this.data = new FilterManager(recipes);
         this.recipes = this.data.resetMainFilterRecipes();
 
@@ -63,6 +62,8 @@ class App {
     }
 
     update(filters) {
+        // this.button;
+
         const newRecipes = this.data.updateFilteredRecipes(filters);
         const newOptions = this.data.updateAdvancedOptions(filters);
         this.advancedOptions.updateFilter(newOptions);

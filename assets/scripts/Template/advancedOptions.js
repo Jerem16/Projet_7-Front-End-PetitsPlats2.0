@@ -1,10 +1,13 @@
 import { get_SStorage, save_SStorage } from "../utils/sessionStorage.js";
 import { escapeHTML } from "../utils/noXss.js";
+
 export class AdvancedOptions {
     constructor(id, options) {
         this.id = id;
         this.options = options;
+        this.filters = get_SStorage();
     }
+    
     updateScrollbarStyle(datalist) {
         if (datalist.scrollHeight > 307) {
             datalist.classList.add("scrollbar-modified");
@@ -12,13 +15,20 @@ export class AdvancedOptions {
             datalist.classList.remove("scrollbar-modified");
         }
     }
+
     initFilters() {
         this.id.forEach((filter) => {
             const key = Object.keys(filter)[0];
             const datalist = document.getElementById(`datalist-${key}`);
 
+            if (!datalist) return;
+
             this.options[key].forEach((item) => {
                 this.addFilterOption(item, datalist, key);
+            });
+
+            this.filters[key].forEach((item) => {
+                this.getSelectedFilter(item, datalist, key);
             });
 
             // Adding event listeners
@@ -28,14 +38,12 @@ export class AdvancedOptions {
                 ".search button[type=submit]"
             );
 
-            if (datalist) {
-                datalist.addEventListener("mouseover", () => {
-                    this.updateScrollbarStyle(datalist);
-                });
-                datalist.addEventListener("mouseout", () => {
-                    this.updateScrollbarStyle(datalist);
-                });
-            }
+            datalist.addEventListener("mouseover", () => {
+                this.updateScrollbarStyle(datalist);
+            });
+            datalist.addEventListener("mouseout", () => {
+                this.updateScrollbarStyle(datalist);
+            });
 
             input.addEventListener("input", () => {
                 closeButton.style.display = input.value ? "block" : "none";
@@ -66,6 +74,20 @@ export class AdvancedOptions {
         });
     }
 
+    getSelectedFilter(item, datalist, key) {
+        this.addSelectedFilter(
+            item,
+            datalist.querySelector(".search"),
+            datalist,
+            key
+        );
+        const removeOption = datalist.querySelector(
+            `option[data-filter="${item}"]`
+        );
+        if (removeOption) {
+            removeOption.remove();
+        }
+    }
     addSelectedFilter(item, searchSpan, datalist, key) {
         const input = datalist.querySelector(".search input");
         input.value = "";
@@ -175,7 +197,7 @@ export class AdvancedOptions {
         );
         options.forEach((option) => {
             option.style.display =
-                inputValue.length < 3 ||
+                inputValue.length < 0 ||
                 option.textContent.toLowerCase().includes(query)
                     ? ""
                     : "none";
