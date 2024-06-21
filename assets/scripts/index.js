@@ -160,4 +160,8 @@ class App {
 }
 
 // Initialize the App
+<<<<<<< HEAD
 new App().init();
+=======
+new App().init();
+>>>>>>> includes
