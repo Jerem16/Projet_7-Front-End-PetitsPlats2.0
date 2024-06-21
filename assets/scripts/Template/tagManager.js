@@ -90,4 +90,7 @@ export class TagManager extends AdvancedOptions {
 
         this.tagFilter.appendChild(tagBar);
     }
+    reset() {
+        this.tagFilter.innerHTML = "";
+    }
 }

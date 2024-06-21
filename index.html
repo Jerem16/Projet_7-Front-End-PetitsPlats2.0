@@ -83,5 +83,41 @@
                 class="row px-sm-3 gap-sm-0 gap-md-3 d-flex col-12 flex-wrap"
             ></section>
         </main>
+        <template id="filter-template">
+            <div class="filter-container col-12 col-sm-3 col-md-3 col-lg-2">
+                <button
+                    class="custom-select btn"
+                    aria-haspopup="listbox"
+                    aria-expanded="false"
+                >
+                    <span class="filter-value"></span>
+                    <img
+                        src="./assets/img/icons/up-arrow.svg"
+                        alt="flèche indiquant l'état du menu"
+                        class="up-arrow"
+                    />
+                </button>
+                <datalist
+                    class="dropdown-content list-group"
+                    style="display: none"
+                >
+                    <span class="search">
+                        <input
+                            type="search"
+                            class="form-control"
+                            placeholder=""
+                        />
+                        <img
+                            class="close"
+                            src="./assets/img/icons/close.svg"
+                            alt="Reset search"
+                        />
+                        <button type="submit">
+                            <i class="bi bi-search"></i>
+                        </button>
+                    </span>
+                </datalist>
+            </div>
+        </template>
     </body>
 </html>
