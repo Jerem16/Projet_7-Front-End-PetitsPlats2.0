@@ -1,7 +1,6 @@
 import {
     get_SStorage,
     save_SStorage,
-    remove_SStorage,
 } from "./sessionStorage.js";
 import { escapeHTML } from "./noXss.js";
 
@@ -46,8 +45,7 @@ export class FilterManager {
     }
 
     mainFilterRecipes(query) {
-        remove_SStorage(); // Efface les filtres existants avant d'ajouter un nouveau filtre de recherche principale
-        if (query.length < 3) {
+        if (query.length < 2) {
             this.filteredData = this.originalData;
         } else {
             const loweredQuery = escapeHTML(query.toLowerCase());
