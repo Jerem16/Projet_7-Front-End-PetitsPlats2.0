@@ -19,7 +19,8 @@ get_SStorage();
 class App {
     constructor() {
         this.filters = get_SStorage();
-        console.log(this.filters);
+        this.query = this.filters.main[0];
+
         this.data = new FilterManager(recipes);
         this.recipes = this.data.resetMainFilterRecipes();
 
@@ -39,6 +40,18 @@ class App {
         this.submit = document.querySelector("form button[type=submit]");
         this.navFilter = document.getElementById("filter-research");
         this.tagFilter = document.getElementById("tag-filter");
+
+        if (this.query != undefined && this.query.length >= 3) {
+            const newRecipes = this.data.mainFilterRecipes(
+                this.filters.main[0]
+            );
+            const newOptions = this.data.updateAdvancedOptions(this.filters);
+            this.advancedOptions.updateFilter(newOptions);
+            new RecipeCard(newRecipes).updateRecipes(newRecipes);
+            const tagManager = new TagManager(this.filters);
+            tagManager.renderUpdate();
+            new Title(newRecipes).updateTitle();
+        }
 
         this.start();
         this.addEventListeners();
@@ -73,7 +86,7 @@ class App {
     }
 
     noTag() {
-        const newRecipes = this.data.updateFilteredRecipes(this.filters);
+        const newRecipes = this.data.resetMainFilterRecipes();
         const newOptions = this.data.updateAdvancedOptions(this.filters);
         this.advancedOptions.updateFilter(newOptions);
         new RecipeCard(newRecipes).updateRecipes(newRecipes);
@@ -83,7 +96,7 @@ class App {
     resetTag() {
         this.filters = get_SStorage();
         remove_SStorage();
-        new TagManager(this.filters).renderUpdate();
+        new TagManager(this.filters).reset();
     }
 
     resetButton() {
@@ -96,13 +109,18 @@ class App {
         this.input.addEventListener("input", () => {
             this.closeButton.style.display = "block";
             const query = this.input.value.trim();
-            if (query.length >= 3) {
+            if (query.length > 2) {
                 this.resetTag();
                 this.submit.removeAttribute("disabled");
-                this.data.mainFilterRecipes(query);
+                const newRecipes = this.data.mainFilterRecipes(query);
                 filtersButtons(advancedSearch);
                 new AdvancedOptions(advancedSearch, this.options).initFilters();
-                this.noTag();
+                const newOptions = this.data.updateAdvancedOptions(
+                    this.filters
+                );
+                this.advancedOptions.updateFilter(newOptions);
+                new RecipeCard(newRecipes).updateRecipes(newRecipes);
+                new Title(newRecipes).updateTitle();
             } else {
                 this.submit.setAttribute("disabled", "true");
             }
@@ -122,7 +140,13 @@ class App {
             filtersButtons(advancedSearch);
             new AdvancedOptions(advancedSearch, this.options).initFilters();
             this.init();
-            this.resetButton();
+
+            const alert = document.getElementById("alert");
+            if (!alert) {
+                this.resetButton();
+            } else {
+                this.input.focus();
+            }
         });
 
         this.navFilter.addEventListener("click", () => {
@@ -136,4 +160,4 @@ class App {
 }
 
 // Initialize the App
-new App();
+new App().init();

@@ -116,7 +116,7 @@ export class FilterManager {
                     loweredQuery,
                     recipe.description
                 );
-                let ingredientIncludesQueryFlag = this.ingredientIncludesQuery(
+                let ingredientIncludesQuery = this.ingredientIncludesQuery(
                     loweredQuery,
                     recipe.ingredients
                 );
@@ -124,7 +124,7 @@ export class FilterManager {
                 if (
                     titleIncludesQuery ||
                     descriptionIncludesQuery ||
-                    ingredientIncludesQueryFlag
+                    ingredientIncludesQuery
                 ) {
                     // Ajoute la recette si elle correspond à la query
                     filteredData.push(recipe);
