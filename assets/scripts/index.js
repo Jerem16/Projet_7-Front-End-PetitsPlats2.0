@@ -159,5 +159,5 @@ class App {
     }
 }
 
-// Initialize the App
+
 new App().init();

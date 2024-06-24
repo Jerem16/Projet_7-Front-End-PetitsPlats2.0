@@ -37,6 +37,8 @@ export class TagManager extends AdvancedOptions {
                 <img
                     src="./assets/img/icons/closeTag.svg"
                     alt="reset tags"
+                    width="14"
+                    height="13"
                 />
             </button>
         `;
@@ -89,5 +91,8 @@ export class TagManager extends AdvancedOptions {
         });
 
         this.tagFilter.appendChild(tagBar);
+    }
+    reset() {
+        this.tagFilter.innerHTML = "";
     }
 }

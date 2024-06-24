@@ -1,8 +1,4 @@
-import {
-    get_SStorage,
-    save_SStorage,
-    remove_SStorage,
-} from "./sessionStorage.js";
+import { get_SStorage, save_SStorage } from "./sessionStorage.js";
 import { escapeHTML } from "./noXss.js";
 
 export class FilterManager {
@@ -13,47 +9,37 @@ export class FilterManager {
         this.newFilteredData = this.filteredData;
     }
 
-    // Convertit toutes les chaînes de caractères des recettes en minuscules
     toLowerCase() {
         return this.recipes.map((recipe) => this.recipeToLowerCase(recipe));
     }
 
-    // Convertit les recettes en minuscules de manière récursive
     recipeToLowerCase(recipe) {
         const transformedRecipe = {};
         for (const key in recipe) {
-            if (recipe.hasOwnProperty(key)) {
-                // Vérifie si l'objet a la propriété spécifiée (hasOwnProperty)
-                switch (typeof recipe[key]) {
-                    case "string":
-                        // Convertit les chaînes de caractères en minuscules
-                        transformedRecipe[key] = recipe[key].toLowerCase();
-                        break;
-                    case "object":
-                        if (Array.isArray(recipe[key])) {
-                            // Traite les tableaux d'objets/chaînes de manière récursive
-                            transformedRecipe[key] = recipe[key].map((item) =>
-                                typeof item === "object" && item !== null
-                                    ? this.recipeToLowerCase(item)
-                                    : item.toLowerCase()
-                            );
-                        } else {
-                            // Convertit les objets en minuscules de manière récursive
-                            transformedRecipe[key] = this.recipeToLowerCase(
-                                recipe[key]
-                            );
-                        }
-                        break;
-                    default:
-                        // Conserve les autres types de données inchangés
-                        transformedRecipe[key] = recipe[key];
-                        break;
-                }
+            switch (typeof recipe[key]) {
+                case "string":
+                    transformedRecipe[key] = recipe[key].toLowerCase();
+                    break;
+                case "object":
+                    if (Array.isArray(recipe[key])) {
+                        transformedRecipe[key] = recipe[key].map((item) =>
+                            typeof item === "object" && item !== null
+                                ? this.recipeToLowerCase(item)
+                                : item.toLowerCase()
+                        );
+                    } else {
+                        transformedRecipe[key] = this.recipeToLowerCase(
+                            recipe[key]
+                        );
+                    }
+                    break;
+                default:
+                    transformedRecipe[key] = recipe[key];
+                    break;
             }
         }
         return transformedRecipe;
     }
-
     // Vérifie si la chaîne target contient la chaîne query
     stringIncludes(query, target) {
         // Parcourt la chaîne target avec une boucle for
@@ -73,8 +59,8 @@ export class FilterManager {
 
     // Vérifie si un des ingrédients contient la chaîne query
     ingredientIncludesQuery(query, ingredients) {
-        for (const ingredient of ingredients) {
-            if (this.stringIncludes(query, ingredient.ingredient)) {
+        for (const object of ingredients) {
+            if (this.stringIncludes(query, object.ingredient)) {
                 return true;
             }
         }
@@ -87,8 +73,9 @@ export class FilterManager {
         } else {
             const loweredQuery = escapeHTML(query.toLowerCase());
 
-            const selectedFilters = get_SStorage(); // Récupère les filtres de session
+            const selectedFilters = get_SStorage(); // Récupère les filtres de session si history
 
+            // Utilise une boucle for of pour vérifier si le filtre main à été défini dans history
             let found = false;
             for (const filter of selectedFilters["main"]) {
                 // Utilise une boucle for...of pour vérifier si le filtre existe
@@ -97,9 +84,8 @@ export class FilterManager {
                     break;
                 }
             }
-
             if (!found) {
-                // Ajoute le filtre s'il n'existe pas déjà
+                // Ajoute le filtre s'il n'existe pas
                 selectedFilters["main"].push(loweredQuery);
             }
 
@@ -116,7 +102,7 @@ export class FilterManager {
                     loweredQuery,
                     recipe.description
                 );
-                let ingredientIncludesQuery = this.ingredientIncludesQuery(
+                let ingredientIncludesQueryFlag = this.ingredientIncludesQuery(
                     loweredQuery,
                     recipe.ingredients
                 );
@@ -124,7 +110,7 @@ export class FilterManager {
                 if (
                     titleIncludesQuery ||
                     descriptionIncludesQuery ||
-                    ingredientIncludesQuery
+                    ingredientIncludesQueryFlag
                 ) {
                     // Ajoute la recette si elle correspond à la query
                     filteredData.push(recipe);
