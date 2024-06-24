@@ -8,9 +8,10 @@ export class AdvancedFilters {
     async render() {
         this.data.forEach((item) => {
             const key = Object.keys(item)[0];
-            const value = item[key];
+            const title = item[key];
+            console.log("Object.keys(item)[0]", key);
+            console.log("item[key]", title);
 
-            // Clone le template
             const clone = document.importNode(this.template, true);
             const container = clone.querySelector(".filter-container");
             const button = container.querySelector(".custom-select");
@@ -22,13 +23,13 @@ export class AdvancedFilters {
             button.id = `custom-select-${key}`;
             button.setAttribute(
                 "aria-label",
-                `Ouvre le menu déroulant de tri par ${value}`
+                `Ouvre le menu déroulant de tri par ${title}`
             );
-            span.textContent = value;
+            span.textContent = title;
             datalist.id = `datalist-${key}`;
             datalist.setAttribute("aria-labelledby", `custom-select-${key}`);
             input.id = `input-${key}`;
-            input.setAttribute("aria-label", `Rechercher un ${value}`);
+            input.setAttribute("aria-label", `Rechercher un ${title}`);
 
             this.navFilter.appendChild(clone);
         });
