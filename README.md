@@ -1,24 +1,93 @@
 # Projet_7-Front-End-PetitsPlats2.0
 
-Développez un algorithme de recherche en JavaScript
+## Développez un algorithme de recherche en JavaScript
 
-## Démarrer le projet
+### Description du Projet
 
-## Installation
+Ce projet a pour objectif de développer un algorithme de recherche efficace pour une plateforme de recettes de cuisine, en utilisant des outils et méthodes avancées de JavaScript, ainsi que Bootstrap pour styliser l'interface.
 
-1. Clonez ce dépôt sur votre machine : https://github.com/Jerem16/Projet_7-Front-End-PetitsPlats2.0.git
+### Objectifs Principaux
 
-2. Accédez au répertoire du projet : cd Projet_7-Front-End-PetitsPlats2.0
+-   Concevoir l'interface utilisateur du site en utilisant Bootstrap.
+-   Développer deux versions d'un algorithme de recherche capable de parcourir et de filtrer efficacement un fichier JSON.
+-   Analyser et comparer les performances des algorithmes.
+-   Documenter le processus et justifier le choix de l'algorithme optimal.
+-   Appliquer les principes du Green Code pour un développement respectueux de l'environnement.
 
-3. Installez les dépendances : yarn install
+### Structure du Projet
 
-4. Démarrez l'application : yarn start
+1. **Conception de l'Interface Utilisateur**
 
-5. Construisez l'application pour la production : Yarn run build
+    - Utilisation de Bootstrap pour créer une interface intuitive et réactive.
+    - Mise en place d'une interface conviviale et accessible sur différents appareils.
 
-6. Prévisualisez l'application : Yarn run preview
+2. **Développement des Algorithmes de Recherche**
 
-## Utilisation
+    - Implémentation de deux versions distinctes de l'algorithme de recherche en JavaScript.
+    - Les algorithmes parcourent et filtres efficacement les données.
+
+3. **Analyse des Performances**
+
+    - Utilisation de Jsben.ch pour évaluer et comparer les performances des algorithmes.
+
+4. **Documentation et Justification**
+
+    - Le processus de développement de chaque algorithme à été documenté.
+    - Analyse des performances et justifications des choix basées sur les tests.
+    - L'algorithme sélectionné est le plus adapté et performant pour la plateforme de recettes.
+
+5. **Principes du Green Code**
+    - Intégrez des pratiques de développement durable tout au long du projet.
+    - Optimisez le code pour minimiser la consommation de ressources et l'impact environnemental.
+
+### Compétences Acquises
+
+#### Techniques
+
+-   Analyse de problèmes informatiques complexes.
+-   Développement et optimisation d'algorithmes de recherche.
+-   Utilisation avancée de JavaScript et Bootstrap.
+
+## Démarrer le Projet
+
+### Installation
+
+1. Clonez ce dépôt sur votre machine :
+
+    ```bash
+    git clone https://github.com/Jerem16/Projet_7-Front-End-PetitsPlats2.0.git
+    ```
+
+2. Accédez au répertoire du projet :
+
+    ```bash
+    cd Projet_7-Front-End-PetitsPlats2.0
+    ```
+
+3. Installez les dépendances :
+
+    ```bash
+    yarn install
+    ```
+
+4. Démarrez l'application :
+
+    ```bash
+    yarn start
+    ```
+
+5. Construisez l'application pour la production :
+
+    ```bash
+    yarn run build
+    ```
+
+6. Prévisualisez l'application :
+    ```bash
+    yarn run preview
+    ```
+
+### Utilisation
 
 Pour démarrer le serveur de développement, utilisez la commande : Yarn start
 Commandes Scss: npm run sass / npm run copy / npm run prefix

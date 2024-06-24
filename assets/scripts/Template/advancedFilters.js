@@ -2,31 +2,38 @@ export class AdvancedFilters {
     constructor(data) {
         this.data = data;
         this.navFilter = document.getElementById("filter-research");
+        this.template = document.getElementById("filter-template").content;
     }
 
     async render() {
         this.data.forEach((item) => {
             const key = Object.keys(item)[0];
-            const value = item[key];
-            this[key] = key;
+            const title = item[key];
+            console.log("Object.keys(item)[0]", key);
+            console.log("item[key]", title);
 
-            this.navFilter.innerHTML += `
-                <div class="filter-container col-12 col-sm-3 col-md-3 col-lg-2" id="filter-by-${key}">
-                    <button class="custom-select btn" id="custom-select-${key}" aria-haspopup="listbox" aria-expanded="false" aria-label="Ouvre le menu déroulant de tri par ${value}">
-                        ${value}<img src="./assets/img/icons/up-arrow.svg" alt="flèche indiquant l'état du menu" class="up-arrow" />
-                    </button>
-                    <datalist class="dropdown-content list-group" id="datalist-${key}" aria-labelledby="custom-select-${key}" style="display: none">
-                        <span id="search-${key}" class="search">
-                            <input type="search" id="input-${key}" class="form-control" placeholder="" aria-label="Rechercher un ${value}" />
-                            <img class="close" src="./assets/img/icons/close.svg" alt="Reset search" />
-                            <button type="submit">
-                                <i class="bi bi-search"></i>
-                            </button>
-                        </span>
-                    </datalist>
-                </div>
-            `;
+            const clone = document.importNode(this.template, true);
+            const container = clone.querySelector(".filter-container");
+            const button = container.querySelector(".custom-select");
+            const span = container.querySelector(".filter-value");
+            const datalist = container.querySelector(".dropdown-content");
+            const input = container.querySelector("input");
+
+            container.id = `filter-by-${key}`;
+            button.id = `custom-select-${key}`;
+            button.setAttribute(
+                "aria-label",
+                `Ouvre le menu déroulant de tri par ${title}`
+            );
+            span.textContent = title;
+            datalist.id = `datalist-${key}`;
+            datalist.setAttribute("aria-labelledby", `custom-select-${key}`);
+            input.id = `input-${key}`;
+            input.setAttribute("aria-label", `Rechercher un ${title}`);
+
+            this.navFilter.appendChild(clone);
         });
+
         this.addListeners();
     }
 
