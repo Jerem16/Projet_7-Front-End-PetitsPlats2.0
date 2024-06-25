@@ -392,7 +392,8 @@ h2 {
             flex-direction: column;
         }
         &-subtitle {
-            @include text-style($secondary-font, 13px, 600, normal, $grey);
+            // @include text-style($secondary-font, 13px, 600, normal, $grey);
+            @include text-style($secondary-font, 13px, 600, normal, #000);
             letter-spacing: 2.2px;
             text-transform: uppercase;
             margin: 0 0 1rem 0;
@@ -414,7 +415,8 @@ h2 {
     .recipe-text,
     .ingredient-name,
     .ingredient-quantity {
-        @include text-style($secondary-font, 14px, 400, normal, $deepBlack);
+        // @include text-style($secondary-font, 14px, 400, normal, $deepBlack);
+        @include text-style($secondary-font, 14px, 400, normal, #000);
         letter-spacing: 0.5px;
         margin: 0;
     }
@@ -427,7 +429,8 @@ h2 {
         width: calc(50% - 1rem);
 
         .ingredient-quantity {
-            color: $grey;
+            // color: $grey;
+            color: $deepBlack;
         }
     }
     .custom-row-gap {

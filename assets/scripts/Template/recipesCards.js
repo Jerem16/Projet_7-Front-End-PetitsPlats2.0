@@ -1,3 +1,4 @@
+import { capitalizeText } from "../utils/capitalise.js";
 export class RecipeCard {
     constructor(recipes) {
         this.recipes = recipes;
@@ -25,18 +26,18 @@ export class RecipeCard {
             )
             .join("");
     }
-    capitalizeSentences(text) {
-        // Divise le texte en phrases en utilisant le point suivi d'un espace ou de la fin de la chaîne
-        const sentences = text.split(/\. (?=[A-Za-z])|\.$/);
+    // capitalizeSentences(text) {
+    //     // Divise le texte en phrases en utilisant un point suivi d'un espace ou de la fin de la chaîne
+    //     const sentences = text.split(/\. (?=[A-Za-z])|\.$/);
 
-        // Capitalise la première lettre de chaque phrase
-        const capitalizedSentences = sentences.map((sentence) => {
-            return sentence.charAt(0).toUpperCase() + sentence.slice(1);
-        });
+    //     // Capitalise la première lettre de chaque phrase
+    //     const capitalizedSentences = sentences.map((sentence) => {
+    //         return sentence.charAt(0).toUpperCase() + sentence.slice(1);
+    //     });
 
-        // Rejoint les phrases avec un point et un espace
-        return capitalizedSentences.join(". ");
-    }
+    //     // Rejoint les phrases avec un point et un espace
+    //     return capitalizedSentences.join(". ");
+    // }
     updateScrollbarStyle(datalist) {
         if (datalist.scrollHeight > 307) {
             datalist.classList.add("scrollbar-modified");
@@ -64,7 +65,7 @@ export class RecipeCard {
                 <div class="recipe-content">
                     <section class="recipe-description">
                         <h4 class="recipe-subtitle">RECETTE</h4>
-                        <p class="recipe-text">${this.capitalizeSentences(
+                        <p class="recipe-text">${capitalizeText(
                             recipe.description
                         )}</p>
                     </section>

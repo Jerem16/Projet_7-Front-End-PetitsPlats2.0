@@ -68,7 +68,7 @@ export class FilterManager {
     }
 
     mainFilterRecipes(query) {
-        if (query.length < 3) {
+        if (query.length < 2) {
             this.filteredData = this.originalData;
         } else {
             const loweredQuery = escapeHTML(query.toLowerCase());

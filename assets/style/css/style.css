@@ -12258,7 +12258,7 @@ h2, .h2 {
   font-size: 13px;
   font-weight: 600;
   line-height: normal;
-  color: #7a7a7a;
+  color: #000;
   letter-spacing: 2.2px;
   text-transform: uppercase;
   margin: 0 0 1rem 0;
@@ -12293,7 +12293,7 @@ h2, .h2 {
   font-size: 14px;
   font-weight: 400;
   line-height: normal;
-  color: #1b1b1b;
+  color: #000;
   letter-spacing: 0.5px;
   margin: 0;
 }
@@ -12305,7 +12305,7 @@ h2, .h2 {
   width: calc(50% - 1rem);
 }
 #recipes_cards .ingredient-item .ingredient-quantity {
-  color: #7a7a7a;
+  color: #1b1b1b;
 }
 #recipes_cards .custom-row-gap {
   gap: 1.5rem;
