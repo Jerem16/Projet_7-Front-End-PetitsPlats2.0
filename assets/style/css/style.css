@@ -12130,6 +12130,12 @@ body main {
 #filter-research .filter-container .scrollbar-modified:hover .search, #filter-research .filter-container .scrollbar-modified:active .search, #filter-research .filter-container .scrollbar-modified:focus .search {
   min-width: calc(100% + 10px);
 }
+@media (max-width: 576px) {
+  #filter-research .filter-container .scrollbar-modified:hover .search, #filter-research .filter-container .scrollbar-modified:active .search, #filter-research .filter-container .scrollbar-modified:focus .search {
+    min-width: calc(100% - 20px);
+    max-width: calc(100% - 20px);
+  }
+}
 #filter-research .text {
   text-align: center !important;
   margin: auto;

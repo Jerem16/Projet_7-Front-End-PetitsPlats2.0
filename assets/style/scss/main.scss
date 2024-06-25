@@ -279,6 +279,16 @@ body {
                     min-width: calc(100% + 10px);
                 }
             }
+            @media (max-width: 576px) {
+                &:hover,
+                &:active,
+                &:focus {
+                    .search {
+                        min-width: calc(100% - 20px);
+                        max-width: calc(100% - 20px);
+                    }
+                }
+            }
         }
     }
     .text {
