@@ -26,6 +26,13 @@
             href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css"
         />
         <link rel="stylesheet" href="./assets/style/css/style.css" />
+        <link
+            rel="preload"
+            type="image/avif"
+            as="image"
+            href="/assets/img/banner.avif"
+            fetchpriority="high"
+        />
         <script type="module" src="./assets/scripts/index.js"></script>
     </head>
 
@@ -72,7 +79,7 @@
                 </button>
             </form>
         </header>
-        <main class="container-fluid px-5 px-sm-0 px-lg-5">
+        <main class="container-fluid px-5 px-sm-0 px-lg-5 m-auto m-md-3">
             <nav
                 id="filter-research"
                 class="filter-research d-flex flex-wrap px-5 px-sm-3 gap-sm-0 gap-md-3 col-12"
@@ -83,5 +90,41 @@
                 class="row px-sm-3 gap-sm-0 gap-md-3 d-flex col-12 flex-wrap"
             ></section>
         </main>
+        <template id="filter-template">
+            <div class="filter-container col-12 col-sm-3 col-md-3 col-lg-2">
+                <button
+                    class="custom-select btn"
+                    aria-haspopup="listbox"
+                    aria-expanded="false"
+                >
+                    <span class="filter-value"></span>
+                    <img
+                        src="./assets/img/icons/up-arrow.svg"
+                        alt="flèche indiquant l'état du menu"
+                        class="up-arrow"
+                    />
+                </button>
+                <datalist
+                    class="dropdown-content list-group"
+                    style="display: none"
+                >
+                    <span class="search">
+                        <input
+                            type="search"
+                            class="form-control"
+                            placeholder=""
+                        />
+                        <img
+                            class="close"
+                            src="./assets/img/icons/close.svg"
+                            alt="Reset search"
+                        />
+                        <button type="submit">
+                            <i class="bi bi-search"></i>
+                        </button>
+                    </span>
+                </datalist>
+            </div>
+        </template>
     </body>
 </html>

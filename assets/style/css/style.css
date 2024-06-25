@@ -12203,7 +12203,6 @@ h2, .h2 {
   display: flex;
   justify-content: space-between;
   gap: 3.5rem 0rem !important;
-  margin: auto;
   margin-top: 2.5rem;
   padding: 0 !important;
 }
