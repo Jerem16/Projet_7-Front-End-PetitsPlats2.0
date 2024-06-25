@@ -47,7 +47,7 @@ export class RecipeCard {
     }
     renderCard(recipe) {
         return `
-            <article class="card recipe-card col-sm-10 col-lg-6 col-xl-3 m-auto"
+            <article class="card recipe-card col-sm-10 col-lg-6 col-xl-3 m-auto m-md-3"
             id="${recipe.id}"
             >
                 <figure class="recipe-image">

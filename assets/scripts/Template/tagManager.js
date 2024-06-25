@@ -95,3 +95,4 @@ export class TagManager extends AdvancedOptions {
     reset() {
         this.tagFilter.innerHTML = "";
     }
+}
