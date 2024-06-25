@@ -12203,8 +12203,8 @@ h2, .h2 {
   display: flex;
   justify-content: space-between;
   gap: 3.5rem 0rem !important;
-  margin: auto;
-  margin-top: 2.5rem;
+  margin: 0 auto !important;
+  margin-top: 2.5rem !important;
   padding: 0 !important;
 }
 #recipes_cards .recipe-card {
@@ -12216,6 +12216,12 @@ h2, .h2 {
   box-shadow: drop-shadow(1px 2px 1px rgba(27, 27, 27, 0.15));
   position: relative;
   height: 762px;
+}
+@media (max-width: 576px) {
+  #recipes_cards .recipe-card {
+    width: fit-content;
+    margin: auto !important;
+  }
 }
 #recipes_cards .recipe-image img {
   object-fit: contain;

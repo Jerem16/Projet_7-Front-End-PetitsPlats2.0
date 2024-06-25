@@ -8,7 +8,7 @@ export class Title {
 
     title() {
         const title = document.createElement("h2");
-        title.className = "col-12 col-md-auto col-lg-5 text-md-end text-center";
+        title.className = "col-12 col-md-auto col-lg-4 col-xl-5 text-md-end text-center";
         title.id = "nb-recipes";
         const recipeCount = this.data.length;
         if (recipeCount === 0) {
