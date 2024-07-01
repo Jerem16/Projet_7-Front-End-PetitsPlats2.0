@@ -40,32 +40,6 @@ export class FilterManager {
         }
         return transformedRecipe;
     }
-    // Vérifie si la chaîne target contient la chaîne query
-    stringIncludes(query, target) {
-        // Parcourt la chaîne target avec une boucle for
-        for (let i = 0; i <= target.length - query.length; i++) {
-            // Substring extrait une sous-chaîne de target de longueur égale à query. Elle prend deux arguments : l'index de début (inclus) et l'index de fin (exclus)
-            let substr = target.substring(i, i + query.length);
-
-            // Compare la sous-chaîne substr avec query
-            if (substr === query) {
-                // Si elles sont égales, retourne true
-                return true;
-            }
-        }
-        // Si aucune correspondance n'est trouvée, retourne false
-        return false;
-    }
-
-    // Vérifie si un des ingrédients contient la chaîne query
-    ingredientIncludesQuery(query, ingredients) {
-        for (const object of ingredients) {
-            if (this.stringIncludes(query, object.ingredient)) {
-                return true;
-            }
-        }
-        return false;
-    }
 
     mainFilterRecipes(query) {
         if (query.length < 2) {
@@ -73,56 +47,25 @@ export class FilterManager {
         } else {
             const loweredQuery = escapeHTML(query.toLowerCase());
 
-            const selectedFilters = get_SStorage(); // Récupère les filtres de session si history
-
-            // Utilise une boucle for of pour vérifier si le filtre main à été défini dans history
-            let found = false;
-            for (const filter of selectedFilters["main"]) {
-                // Utilise une boucle for...of pour vérifier si le filtre existe
-                if (filter === loweredQuery) {
-                    found = true;
-                    break;
-                }
-            }
-            if (!found) {
-                // Ajoute le filtre s'il n'existe pas
+            const selectedFilters = get_SStorage();
+            if (!selectedFilters["main"].includes(loweredQuery)) {
                 selectedFilters["main"].push(loweredQuery);
             }
+            save_SStorage(selectedFilters);
 
-            save_SStorage(selectedFilters); // Sauvegarde les filtres mis à jour
-
-            let filteredData = [];
-            for (const recipe of this.originalData) {
-                // Utilise la boucle for of de la methode stringIncludes pour filtrer les recettes
-                let titleIncludesQuery = this.stringIncludes(
-                    loweredQuery,
-                    recipe.name
+            this.filteredData = this.originalData.filter((recipe) => {
+                return (
+                    recipe.name.includes(loweredQuery) ||
+                    recipe.description.includes(loweredQuery) ||
+                    recipe.ingredients.some((ingredient) =>
+                        ingredient.ingredient.includes(loweredQuery)
+                    )
                 );
-                let descriptionIncludesQuery = this.stringIncludes(
-                    loweredQuery,
-                    recipe.description
-                );
-                let ingredientIncludesQueryFlag = this.ingredientIncludesQuery(
-                    loweredQuery,
-                    recipe.ingredients
-                );
-
-                if (
-                    titleIncludesQuery ||
-                    descriptionIncludesQuery ||
-                    ingredientIncludesQueryFlag
-                ) {
-                    // Ajoute la recette si elle correspond à la query
-                    filteredData.push(recipe);
-                }
-            }
-
-            this.filteredData = filteredData; // Met à jour les données filtrées
+            });
         }
-        return this.filteredData; // Retourne les données filtrées
+        return this.filteredData;
     }
 
-    // Réinitialise les filtres principaux et retourne les données originales
     resetMainFilterRecipes() {
         this.filteredData = this.originalData;
         return this.filteredData;
